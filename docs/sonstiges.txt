@@ -1,0 +1,216 @@
+Ich kann dir gerne beim Erstellen einer PowerPoint-Präsentation helfen – allerdings kann ich dir hier direkt nur den Inhalt und die Folienstruktur als Textvorschlag ausgeben. Eine fertige .pptx-Datei kann ich nicht direkt hochladen oder mitschicken, da mir dafür die nötige Funktionalität (Upload/Download von Binärdateien) nicht zur Verfügung steht.
+
+Wenn du möchtest, kann ich dir jedoch einen ausformulierten Entwurf erstellen (z. B. als Folientitel, Bullet Points und Sprecher-Notizen). Diesen Entwurf kannst du ganz einfach in PowerPoint (oder Google Slides) übernehmen und noch mit Grafiken, Animationen etc. anreichern.
+
+Unten findest du den Vorschlag im Folien-Format. Du musst die Inhalte lediglich in eine leere PowerPoint-Datei übertragen und dort gestalten:
+
+Foliensatz: „Stabiles Essen – Rezept- und Einkaufsplaner“
+Folie 1: Titel
+Titel: Stabiles Essen – Rezept- und Einkaufsplaner
+
+Untertitel: Ein Webprojekt für organisierte Essensplanung
+
+Team: Roland, Muhammed, Alaa, Musti
+
+Eventuell ein passendes Bild/Illustration (z. B. ein Symbol für Kochen oder Einkaufen)
+
+Sprecher-Notizen (optional):
+
+Herzlich willkommen zu unserer Projektpräsentation „Stabiles Essen“. Wir stellen hier ein Webprojekt vor, mit dem Nutzer Rezepte finden, verwalten und Einkaufslisten erstellen können.
+
+Folie 2: Projektidee
+Stichpunkte:
+
+Was ist „Stabiles Essen“?
+
+Ein Webtool zum Finden, Erstellen und Verwalten von Rezepten
+
+Integrierte Einkaufslistenfunktion
+
+Benutzerfreundlich, responsiv, sicher
+
+Ziel:
+
+Schnelle Inspiration für Mahlzeiten
+
+Überblick über benötigte Zutaten
+
+Komfortable Planung und Einkaufsvorbereitung
+
+Sprecher-Notizen:
+
+Diese Plattform soll Menschen beim täglichen Kochen helfen, indem sie Rezepte bereitstellt und automatisch Einkaufslisten generiert.
+
+Folie 3: Features (Frontend)
+Stichpunkte:
+
+Rezeptübersicht & Suche: Rezepte entdecken oder filtern (z. B. nach Zutaten)
+
+CRUD-Funktionalität: Eigene Rezepte erstellen, bearbeiten, löschen
+
+Einkaufslisten: Automatische Auflistung benötigter Zutaten
+
+Benutzerkonto & Login: Session-Management (JWT oder SessionID)
+
+Responsives Design: Optimiert für Desktop & Mobile
+
+Sprecher-Notizen:
+
+Das Frontend basiert auf React und bietet sowohl eine übersichtliche Rezeptliste als auch eine Suchfunktion. Nutzer können Rezepte selbst anlegen und bearbeiten und sich automatisch Einkaufslisten generieren lassen.
+
+Folie 4: Features (Backend)
+Stichpunkte:
+
+REST-API (GET, POST, PUT, DELETE)
+
+Verwaltung von Rezepten, Einkaufslisten, Benutzerdaten
+
+Datenbank-Anbindung (MySQL, MongoDB o. Ä.)
+
+Authentifizierung & Autorisierung (JWT / Session)
+
+Externe APIs
+
+Z. B. Spoonacular / Edamam für Rezepte & Nährwerte
+
+Sprecher-Notizen:
+
+Das Backend stellt alle erforderlichen Endpoints zur Verfügung und kümmert sich um die Datenpersistenz sowie die Sicherheit (Login, Session-Management).
+
+Folie 5: Externe Webservices
+Stichpunkte:
+
+Rezept- und Nährwert-APIs (z. B. Spoonacular, Edamam)
+
+Rezepte, Zutatenlisten, Kalorieninfos
+
+(Optional) Produkt-/Preis-APIs
+
+Preise und Verfügbarkeit von Lebensmitteln
+
+(Optional) Währungs- oder Übersetzungs-APIs
+
+Für internationale Nutzer / mehrsprachige Rezepte
+
+(Erfüllt M8, ggf. weitere Punkte aus S1/C1)
+
+Sprecher-Notizen:
+
+Wir binden mindestens eine externe API ein, etwa Spoonacular, um Rezeptvorschläge und Nährwertinformationen zu erhalten. Für zusätzliche Punkte könnten wir weitere Services hinzufügen, etwa Preis-APIs oder Übersetzungsfunktionen.
+
+Folie 6: Team & Rollen
+Teammitglied	Rolle
+Roland	Backend
+Muhammed	Backend
+Alaa	Frontend
+Musti	Frontend
+Stichpunkte:
+
+Roland & Muhammed:
+
+Datenbankdesign, API-Endpoints (CRUD), Authentifizierung, externe API-Anbindung
+
+Alaa & Musti:
+
+UI-Design (React), State Management, Integration der REST-API, responsives Layout
+
+Sprecher-Notizen:
+
+Wir haben uns für eine klare Aufteilung entschieden: Zwei Personen konzentrieren sich vor allem aufs Backend, zwei aufs Frontend. Dabei achten wir aber auch darauf, dass jeder im Team Einblick in den Gesamtprozess hat.
+
+Folie 7: Kollaborative Entwicklung
+Stichpunkte:
+
+Git & GitHub
+
+Versionskontrolle, Pull Requests, Code Reviews
+
+Issue-Tracking & Projektmanagement (z. B. Jira, Trello, GitHub Projects)
+
+Aufgabenverteilung, Priorisierung, Sprint-Planung
+
+Kommunikation (Slack, Teams, Discord)
+
+Chats, Videokonferenzen, Screen-Sharing
+
+Dokumentation & Wissensmanagement (Notion, Confluence, Wiki)
+
+Anforderungen, Konzepte, Architektur
+
+CI/CD (GitHub Actions, GitLab CI, Jenkins)
+
+Automatisierte Builds, Tests, Deployments
+
+Kollaboratives Coding (VS Code Live Share, JetBrains Code With Me)
+
+Pair-Programming, gleichzeitiges Arbeiten am Code
+
+Sprecher-Notizen:
+
+Diese Werkzeuge helfen uns, im Team effizient zusammenzuarbeiten und gleichzeitig die Codequalität hochzuhalten. Besonders Pull Requests und Code Reviews sorgen für Qualitätssicherung.
+
+Folie 8: Umsetzung der Anforderungen
+Stichpunkte:
+
+MUST (M1–M9)
+
+Eigenes Backend & eigenes Frontend
+
+CRUD-Ressourcen & Session-Management
+
+Mind. ein externer REST-Service (z. B. Spoonacular)
+
+SHOULD (S1–S4)
+
+Zweites Frontend (etwa ein Admin-Bereich)
+
+Responsives Design & W3C-Konformität
+
+Weitere externe REST-APIs
+
+COULD (C1–C3)
+
+Drei externe REST-APIs
+
+JSON & XML
+
+PATCH-Endpunkt
+
+Sprecher-Notizen:
+
+Wir haben unsergestellt, dass wir alle MUST-Kriterien erfüllen, und planen, einige SHOULD- und COULD-Features umzusetzen, sofern es die Zeit zulässt. Zum Beispiel könnte ein Admin-Panel das zweite Frontend sein.
+
+Folie 9: Ausblick
+Stichpunkte:
+
+Erweiterungsmöglichkeiten
+
+Mehrsprachige Rezepte
+
+Komplexere Einkaufslisten (Preis- und Mengenberechnung)
+
+Community-Funktionen (Rezepte teilen, bewerten, kommentieren)
+
+Fazit
+
+„Stabiles Essen“ bietet eine übersichtliche, digitale Unterstützung beim Kochen
+
+Gute Grundlage für weitere Features
+
+Sprecher-Notizen:
+
+Wir sehen hier viel Potenzial für zukünftige Updates – beispielsweise eine Community-Funktion, bei der Nutzer Rezepte teilen, kommentieren und bewerten können.
+
+Folie 10: Fragen?
+Stichpunkte:
+
+Vielen Dank für eure Aufmerksamkeit!
+
+Kontakt: Kurze Info, wie man euch erreicht (z. B. Team-Email, GitHub-Repo-Link).
+
+Sprecher-Notizen:
+
+Zum Abschluss bedanken wir uns für das Zuhören und freuen uns auf Fragen oder Feedback!
+
+Abschluss
+Damit hast du einen strukturieren Foliensatz für „Stabiles Essen – Rezept- und Einkaufsplaner“. Kopiere einfach die Inhalte in deine PowerPoint oder ein anderes Präsentationsprogramm und verfeinere Design und Layout (Farben, Bilder, Logos, Icons usw.) nach Bedarf.

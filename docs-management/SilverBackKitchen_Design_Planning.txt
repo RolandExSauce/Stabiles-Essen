@@ -1,0 +1,23 @@
+App Idea: Helps with finding receipts,
+creating receipts based on ingredients,
+Create your own receipt
+suggesting a substitute for missing ingredient
+organizing ingredient lists, 
+-----------------------------------------------
+Landing Page: 
+font familiy: JejuHallasan
+fontsize Title: 55px
+fontsize slogan: 30px
+font text color: #4A4849
+Background Color: #FDFDFD
+font: JejuHallasan (use fftt) 
+
+---------------------------------
+Dashboard underline color: E4E4E4
+
+
+ 
+
+
+
+

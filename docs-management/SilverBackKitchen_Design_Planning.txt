@@ -6,14 +6,77 @@ organizing ingredient lists,
 -----------------------------------------------
 Landing Page: 
 font familiy: JejuHallasan
-fontsize Title: 55px
-fontsize slogan: 30px
+fontsize Title: 64px
+fontsize slogan: 28px
 font text color: #4A4849
-Background Color: #FDFDFD
+Background Color: #FDFDFD (almost white)
 font: JejuHallasan (use fftt) 
+------------------------------------------------
+Register Page: 
+font familiy: JejuHallasan
+fontsize Title: 64px
+fontsize slogan: 28px
+Text: "Register" fontsize: 55px
+font text color: #4A4849
+textfield texts size: 25px
+Already signed up text size: 30px
+Background Color: #FDFDFD (almost white)
+font: JejuHallasan (use fftt) 
+------------------------------------------------
+Login Page: 
+font familiy: JejuHallasan
+fontsize Title: 64px
+fontsize slogan: 28px
+Text: "Login" fontsize: 55px
+font text color: #4A4849
+textfield texts size: 25px
+Or sign up text size: 30px
+forgot password reset text size: 20px
+Background Color: #FDFDFD (almost white)
+font: JejuHallasan (use fftt) 
+------------------------------------------------
+Home Dashboard Page: 
+font familiy: JejuHallasan
+Text: "Click here for a Quick Guide" fontsize: 35px
+div color: #4A4849, opacity 80%
+Background Color: #FDFDFD (almost white)
+font: JejuHallasan (use fftt) 
+------------------------------------------------
+If one of the Menu Items is active, route is active,
+background color: #EFEFEF
 
----------------------------------
+
+
+
+Home Dashboard Page  (if logged in) 
+background color section right: #FDFDFD
+background color Sidebar: #F5F5F5
+Color SidebarTop Line and Sidebar Line below: #E4E4E4
+
+
+Sidebar background Color on all other routes: #FFFFFF
+
+
+
+
+couldnt fetch online recipes blabla placeholder
+
+making search recipe icon and my recipe icon bigger 
+
+
+
+
+-----------------------------------------------------
 Dashboard underline color: E4E4E4
+
+Color of active tab on Sidebar: #EFEFEF 
+
+background color if on Recipes or other routes: #1A1919
+
+
+
+Command-Z that burnt toast. We got version control.
+
 
 
  

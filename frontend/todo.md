@@ -1,0 +1,2 @@
+-Fix Sidebar, Profile, Logout button alignment
+-Login, Register, Landing page, center in middle

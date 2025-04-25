@@ -1,0 +1,49 @@
+.custom-text-field {
+    position: relative;
+  }
+  
+  .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .input-container input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+  }
+  
+  .custom-label {
+    position: absolute;
+    left: 50px; /* Adjust to create more space between icon and label */
+    top: 50%; /* Center vertically within the input field */
+    background-color: white;
+    padding: 0 5px;
+    font-size: 12px; /* Smaller font size to fit within the input border */
+    color: #007bff; /* Label color */
+    transform: translateY(-50%); /* Center the label vertically */
+    pointer-events: none;
+    z-index: 1; /* Ensure label is above the input */
+  }
+  
+  /* Styling when floatingLabel is enabled */
+  .custom-text-field.floating-label .custom-label {
+    top: 6px; /* Adjust to be within the border outline of the input */
+  }
+  
+  .custom-text-field.floating-label .input-container input {
+    padding-top: 24px; /* Extra space for the label */
+  }
+  
+  .embedded-icon {
+    position: absolute;
+    left: 20px;
+    color: #2b2828b3;
+    pointer-events: none;
+    font-size: 22px; /* Adjust size as necessary */
+  }
+  

@@ -1,0 +1,46 @@
+package gorilla_kitchen.stabiles_essen.controller;
+import com.mongodb.DuplicateKeyException;
+import gorilla_kitchen.stabiles_essen.dto.*;
+import gorilla_kitchen.stabiles_essen.service.AuthService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+
+//auth controller for login and register
+@RestController
+@RequestMapping("/api/auth")
+@RequiredArgsConstructor
+public class AuthController {
+
+    private final  AuthService authService;
+
+    //signin controller
+    @PostMapping("/signin")
+    public AuthDTOs.AuthResponse authenticateUser(@RequestBody AuthDTOs.LoginRequest loginRequest) {
+
+        //To get a better understanding how spring security works, console.log the data from below
+        //they should be printed after the filter
+        System.out.println("Login request: " + loginRequest);
+        System.out.println("check if controller reached before filter kicks in");
+        try {
+            return authService.authenticateUser(loginRequest);
+        } catch (AuthenticationException e) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid credentials");
+        }
+    };
+
+    //signup controller
+    @PostMapping("/signup")
+    public AuthDTOs.AuthResponse registerUser(@RequestBody AuthDTOs.RegisterRequest registerRequest) {
+        try {
+            return authService.registerUser(registerRequest);
+        } catch (DuplicateKeyException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username or email already taken");
+        }
+    };
+}

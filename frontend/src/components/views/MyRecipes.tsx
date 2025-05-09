@@ -26,7 +26,7 @@ const MyRecipes = () => {
         await new Promise((resolve) => setTimeout(resolve, 500));
 
         // For now, use dummy data
-        const myRecipesData = recipeData.slice(0, 4);
+        const myRecipesData = recipeData.slice(0, 6);
         //const myRecipesData: IRecipe[] = [];
 
         setMyRecipes(myRecipesData);

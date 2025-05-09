@@ -22,7 +22,6 @@ const useNavHook = () => {
 };
 
 
-
 //maybe create more custom hooks here
 export {
     useNavHook

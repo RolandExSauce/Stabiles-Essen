@@ -1,41 +1,37 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import React from "react";
 import "./styles/CustomBtn.css";
 import { ICustomBtnProps } from "../../types/components.types";
 
-// This reusable button component will be used throughout the entire application
+//Custom button component
 const CustomBtn: React.FC<ICustomBtnProps> = ({
-  handleClick,
-  disabled,
   btnText,
-  buttonIcon,
-  buttonStyleOptions,
-  roundButtonBorders,
-  buttonType, // Default to "button" if not specified
+  disabled,
+  variant = "primary",
+  size = "medium",
+  icon,
+  fullWidth = false,
+  type = "button",
+  handleClick,
 }) => {
-  // const buttonRef = useRef<HTMLButtonElement>(null);
+  const btnClasses = [
+    "custom-btn",
+    `custom-btn--${variant}`,
+    `custom-btn--${size}`,
+    fullWidth ? "custom-btn--full-width" : "",
+    disabled ? "custom-btn--disabled" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
     <button
-      type={buttonType ?? "button"}
-      style={{
-        borderRadius: roundButtonBorders ? "40px" : "",
-        ...buttonStyleOptions?.buttonStyles,
-      }}
-      className={`button ${disabled ? "disabled" : ""}`}
-      // ref={buttonRef}
-      disabled={disabled} // Disable the button if `disabled` is true
+      className={btnClasses}
+      disabled={disabled}
+      type={type}
       onClick={handleClick}
     >
-      <div className="text-icon">
-        {buttonIcon && <img src={buttonIcon} style={buttonStyleOptions?.iconStyles} />}
-        <span
-          style={{
-            color: "#040F36",
-            ...buttonStyleOptions?.buttonTxtStyles,
-          }}
-        >
-          {btnText}
-        </span>
-      </div>
+      {icon && <span className="custom-btn__icon">{icon}</span>}
+      <span className="custom-btn__text">{btnText}</span>
     </button>
   );
 };

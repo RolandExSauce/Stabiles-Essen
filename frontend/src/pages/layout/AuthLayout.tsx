@@ -1,13 +1,16 @@
 import { Navigate, Outlet } from "react-router";
 import { useLocation } from "react-router-dom";
-import { bgImg, logoApeAndTitleFaded } from "../../assets/image-icons-barrel";
+import { logoApeAndTitleFaded } from "../../assets/image-icons-barrel";
 import { useNavHook } from "../../tools/custom.hooks";
+import CopyrightFooter from "./CopyRightFooter";
+
+
 
 //Auth layout, will handle if user is authenticated or not
 const AuthLayout = () => {
+
   const isAuthenticated = false; // manually simulate logged-in state
   const location = useLocation();
-
   const { toLanding } = useNavHook();
 
   //redirect authenticated users away from login/register
@@ -52,8 +55,10 @@ const AuthLayout = () => {
       >
         <Outlet />
       </div>
+      <div style={{ marginTop: 70 }}>
+        <CopyrightFooter />
+      </div>
     </div>
   );
 };
-
 export default AuthLayout;

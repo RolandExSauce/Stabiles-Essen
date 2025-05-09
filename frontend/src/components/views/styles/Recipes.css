@@ -1,17 +1,5 @@
-/* ==== ROOT VARIABLES ==== */
-:root {
-  --clr-primary: #d50000;
-  --clr-primary-hover: #29e6a7;
-  --clr-primary-dark: #039d69;
-  --clr-gray100: #f0f7f8;
-  --clr-gray200: #cfd8dc;
-  --clr-gray300: #a7b7be;
-  --clr-gray400: #6b7e86;
-  --clr-gray500: #425a65;
-  --radius: 0.2rem;
-}
 
-/* ==== GLOBAL STYLING ==== */
+
 .recipes-container {
   font-family: 'Oxygen', sans-serif;
   display: grid;

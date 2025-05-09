@@ -75,5 +75,4 @@ const CustomTextField: React.FC<ICustomTextFieldProps> = ({
     </div>
   );
 };
-
 export default CustomTextField;

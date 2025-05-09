@@ -1,12 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  logoApeAndTitleFaded,
   logoApe,
   logoutIcon,
   userIconWhite,
   userIcon,
 } from "../../assets/image-icons-barrel";
-import { sidebarMenuItems } from "../../tools/arrays.static";
+import { sidebarMenuItems } from "../../tools/menusAndForms";
 import {
   faChevronLeft,
   faChevronRight,
@@ -36,11 +35,10 @@ const Sidebar: React.FC<ISidebarProps> = ({ onToggle }) => {
   return (
     <section className={`sidebar ${isMinimized ? "minimized" : ""}`}>
       <div className="header">
-        <img
-          className="logo-expanded"
-          src={logoApeAndTitleFaded}
-          alt="Logo with title"
-        />
+        <h1 className="logo-expanded">
+          <span>SilverBack</span>
+          <span>Kitchen</span>
+        </h1>
         <img className="logo-collapsed" src={logoApe} alt="Logo" />
       </div>
 
@@ -76,7 +74,7 @@ const Sidebar: React.FC<ISidebarProps> = ({ onToggle }) => {
                       <img
                         src={icon}
                         alt={itemAltAndRoute}
-                        className={`item-icon ${isLargeIcon ? "large" : ""}`}
+                        className={`item-icon`}
                       />
                       <span className="item-text">{itemName}</span>
                       <span className="item-tooltip">{itemName}</span>
@@ -91,15 +89,7 @@ const Sidebar: React.FC<ISidebarProps> = ({ onToggle }) => {
 
       <div className="footer">
         <div className="footer-items">
-          <button
-            style={{
-              backgroundColor: isMinimized ? "#fdfdfd" : "#4a4849",
-              color: isMinimized ? "#4a4849 " : "#fdfdfd",
-              width: "fit-content",
-              borderRadius: "50px",
-            }}
-            className="footer-item profile-button"
-          >
+          <button className="footer-item profile-button">
             <div className="footer-item-content">
               <img
                 src={isMinimized ? userIcon : userIconWhite}
@@ -111,7 +101,7 @@ const Sidebar: React.FC<ISidebarProps> = ({ onToggle }) => {
             </div>
           </button>
 
-          <button className="footer-item">
+          <button className="footer-item logout-button">
             <div className="footer-item-content">
               <img
                 src={logoutIcon}

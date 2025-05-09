@@ -16,13 +16,16 @@ import previousPageIcon from "./other-icons/previousPage.png";
 import onlineRecipeIcon from "./other-icons/onlineRecipes.png";
 import cookRecipe from "./other-icons/recipeCooking.png";
 import noRecipesFound from "./other-icons/noRecipesFound.png";
+import notCookingYet from "./other-icons/notCookingYet.png";
 import addPlusIcon from "./other-icons/pludAddIcon.png"
 import searchIcon from "./other-icons/searchIcon.png";
 import shoppingBasketIcon from "./other-icons/shoppingBasket.png";
-import shoppingListIcon from "./other-icons/shoppingList.png";
 import userIcon from "./other-icons/userIcon.png";
 import userIconWhite from "./other-icons/userIconWhite.png";
 import emailIcon from "./other-icons/emailIcon.png";
+import homeIcon from "./other-icons/homeIcon.png";
+import underConstruct from "./other-icons/underConstruct.png";
+
 
 export {
     // logo for app
@@ -44,10 +47,12 @@ export {
     cookRecipe,
     searchIcon,
     shoppingBasketIcon,
-    shoppingListIcon,
     userIcon,
     userIconWhite,
     emailIcon,
     noRecipesFound,
-    addPlusIcon
+    notCookingYet,
+    addPlusIcon,
+    homeIcon,
+    underConstruct
 };

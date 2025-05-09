@@ -3,8 +3,9 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AuthLayout from "./pages/layout/AuthLayout";
-import { DashboardLayout, dashboardRoutes } from "./tools/jsx-elements";
+import { DashboardLayout, dashboardRoutes } from "./tools/dashboardRoutes.tsx";
 
+//Entry App
 function App() {
   return (
     <Routes>
@@ -35,6 +36,5 @@ function App() {
       ))}
     </Routes>
   );
-}
-
+};
 export default App;

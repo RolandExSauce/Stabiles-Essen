@@ -2,6 +2,7 @@ import { IAuthForm } from "../../types/auth.types";
 import { useNavHook } from "../../tools/custom.hooks";
 import styles from "../styles/AuthForm.module.css";
 
+
 // Reusable auth form, can be used for register and login
 const AuthForm = ({
   title,

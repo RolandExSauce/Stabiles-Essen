@@ -36,7 +36,7 @@ public class JwtUtil {
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
-    }
+    };
 
     // Get username from JWT token
     public String getUsernameFromToken(String token) {

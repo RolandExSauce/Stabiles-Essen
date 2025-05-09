@@ -1,16 +1,17 @@
-import { PropsWithChildren, useState } from "react";
+import { useState } from "react";
 import Sidebar from "../components/sidebar/Sidebar";
-import MyRecipesView from "../components/views/MyRecipesView";
-import OnlineRecipesView from "../components/views/OnlineRecipesView";
-import MyPantryView from "../components/views/MyPantryView";
+import MyRecipes from "../components/views/MyRecipes";
+import OnlineRecipes from "../components/views/OnlineRecipes";
 import Recipe from "../components/views/components/Recipe";
-import ShoppingListView from "../components/views/ShoppingListView";
+import ShoppingList from "../components/views/ShoppingList";
 import Home from "../pages/Home";
-import CreateRecipe from "../components/views/components/CreateRecipe";
 import { Outlet } from "react-router";
+import MyPantry from "../components/views/components/MyPantry";
+
+
 
 //layout component for pages that should include the sidebar
-export const DashboardLayout = ({ children }: PropsWithChildren) => {
+export const DashboardLayout = () => {
   const [sidebarMinimized, setSidebarMinimized] = useState(false);
   const handleSidebarToggle = (isMinimized: boolean) => {
     setSidebarMinimized(isMinimized);
@@ -33,24 +34,22 @@ export const DashboardLayout = ({ children }: PropsWithChildren) => {
 //extracted here for clean struct
 export const dashboardRoutes = [
   { path: "/home", element: <Home /> },
-  { path: "/shopping-list", element: <ShoppingListView /> },
-  { path: "/pantry", element: <MyPantryView /> },
+  { path: "/shopping-list", element: <ShoppingList /> },
+  { path: "/pantry", element: <MyPantry /> },
 
   //use nested route, '*' wildcard to match nested routes as well
   {
     path: "/online-recipes/*",
     children: [
-      { index: true, element: <OnlineRecipesView /> },
+      { index: true, element: <OnlineRecipes /> },
       { path: "recipe/:id", element: <Recipe /> },
     ],
   },
-
   {
     path: "/my-recipes/*",
     children: [
-      { index: true, element: <MyRecipesView /> },
+      { index: true, element: <MyRecipes /> },
       { path: "recipe/:id", element: <Recipe /> },
-      { path: "create-recipe", element: <CreateRecipe /> },
     ],
   },
 ];

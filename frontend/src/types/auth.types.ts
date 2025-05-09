@@ -1,5 +1,3 @@
-
-
 //for the form fields 
 type TAuthForm = {
     type: React.HTMLInputTypeAttribute;
@@ -22,9 +20,8 @@ interface IAuthForm {
 };
 
 
-
 export {
     IAuthForm,
     TAuthForm,
     TEventSubmit
-}
+};

@@ -1,24 +1,27 @@
-
-// import CustomTextField from "../../global/CustomTextField";
-import { IIngredient } from '../../../types/components.types';
-import '../styles/CreateRecipe.css'
-import React, { useState, ChangeEvent } from 'react';
+import { ICreateRecipeProps, IIngredient } from "../../../types/components.types";
+import "../styles/CreateRecipe.css";
+import React, { useState, ChangeEvent } from "react";
 
 
-
-
-const CreateRecipe: React.FC = () => {
-  const [recipeName, setRecipeName] = useState<string>('');
-  const [duration, setDuration] = useState<string>('');
-  const [rating, setRating] = useState<string>('');
+//Create recipe Form/Component 
+const CreateRecipe: React.FC<ICreateRecipeProps> = ({
+  onCreateRecipe,
+  onCancel,
+}) => {
+  const [recipeName, setRecipeName] = useState<string>("");
+  const [recipeDescription, setRecipeDescription] = useState<string>("");
+  const [cookingTime, setCookingTime] = useState<string>("");
+  const [calories, setCalories] = useState<string>("");
+  const [servings, setServings] = useState<string>("1");
+  const [rating, setRating] = useState<string>("");
   const [ingredients, setIngredients] = useState<IIngredient[]>([]);
-  const [newIngredient, setNewIngredient] = useState<Omit<IIngredient, 'id'>>({
-    name: '',
-    amount: '',
-    unit: '',
+  const [newIngredient, setNewIngredient] = useState<Omit<IIngredient, "id">>({
+    name: "",
+    amount: 0,
+    unit: "",
   });
-  const [instructions, setInstructions] = useState<string>('');
-  const [category, setCategory] = useState<string>('Breakfast');
+  const [instructions, setInstructions] = useState<string>("");
+  const [category, setCategory] = useState<string>("Breakfast");
 
   const handleIngredientChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,6 +31,8 @@ const CreateRecipe: React.FC = () => {
     });
   };
 
+
+  //add ingredient 
   const addIngredient = () => {
     if (newIngredient.name && newIngredient.amount && newIngredient.unit) {
       setIngredients([
@@ -38,71 +43,108 @@ const CreateRecipe: React.FC = () => {
         },
       ]);
       setNewIngredient({
-        name: '',
-        amount: '',
-        unit: '',
+        name: "",
+        amount: 0,
+        unit: "",
       });
     }
   };
 
+  //remove ingredients
+  const removeIngredient = (id: number) => {
+    setIngredients(ingredients.filter((ingredient) => ingredient.id !== id));
+  };
+
+
+  //create recipe 
   const handleCreateRecipe = () => {
-    // Handle form submission
     const recipe = {
       name: recipeName,
-      duration,
+      description: recipeDescription,
+      cookingTime,
+      calories,
+      servings,
       rating,
       ingredients,
       instructions,
       category,
     };
-    
-    console.log('Creating recipe:', recipe);
-    // Submit to your API or state management here
-  };
-
-  const handleCancel = () => {
-    // Reset form or navigate away
-    console.log('Operation canceled');
+    onCreateRecipe(recipe);
   };
 
   return (
     <div className="create-recipe-container">
       <div className="recipe-header">
-        <div className="input-group">
-          <input
-            type="text"
-            placeholder="Recipe Name"
-            value={recipeName}
-            onChange={(e) => setRecipeName(e.target.value)}
-            className="recipe-name-input"
-          />
+        <h2>Create New Recipe</h2>
+        <div className="name-description-group">
+          <div className="input-group full-width">
+            <input
+              type="text"
+              placeholder="Recipe Name"
+              value={recipeName}
+              onChange={(e) => setRecipeName(e.target.value)}
+              className="recipe-name-input"
+            />
+          </div>
+          <div className="input-group full-width">
+            <input
+              type="text"
+              placeholder="Recipe Description"
+              value={recipeDescription}
+              onChange={(e) => setRecipeDescription(e.target.value)}
+              className="recipe-description-input"
+            />
+          </div>
         </div>
-        
-        <div className="duration-rating-group">
-          <div className="duration-group">
+
+        <div className="details-group">
+          <div className="input-group full-width">
             <input
               type="number"
-              placeholder="Duration"
-              value={duration}
-              onChange={(e) => setDuration(e.target.value)}
-              className="duration-input"
+              placeholder="Cooking Time (MIN)"
+              value={cookingTime}
+              onChange={(e) => {
+                const value = parseInt(e.target.value || "0"); // Fallback to 0 if empty
+                if (value > 300) {
+                  alert(
+                    "Recipes should not be longer than 5 hours (300 minutes)"
+                  );
+                  return; // Don't update state
+                }
+                setCookingTime(e.target.value); // Update for valid inputs
+              }}
+              className="form-input no-spinner"
             />
-            <div className="min-label">MIN</div>
           </div>
-          
-          <div className="rating-group">
-            <div className="rating-label">Rating</div>
-            <select 
-              value={rating} 
-              onChange={(e) => setRating(e.target.value)}
-              className="rating-select"
+
+          <div className="input-group full-width">
+            <input
+              type="number"
+              placeholder="Calories (CAL)"
+              value={calories}
+              onChange={(e) => {
+                const value = parseInt(e.target.value || "0");
+                if (value > 10000) {
+                  alert("Maximum calories allowed is 10000kcal");
+                  return;
+                }
+                setCalories(e.target.value);
+              }}
+              className="form-input no-spinner"
+            />
+          </div>
+
+          <div className="input-group full-width">
+            <select
+              value={servings}
+              onChange={(e) => setServings(e.target.value)}
+              className="form-input"
             >
-              <option value="">Select</option>
-              <option value="1">1 Star</option>
-              <option value="2">2 Stars</option>
-              <option value="3">3 Stars</option>
-              <option value="4">4 Stars</option>
-              <option value="5">5 Stars</option>
+              {[...Array(20).keys()].map((i) => (
+                <option key={i + 1} value={i + 1}>
+                  {i + 1} {i + 1 === 1 ? "serving" : "servings"}
+                </option>
+              ))}
             </select>
           </div>
         </div>
@@ -114,10 +156,11 @@ const CreateRecipe: React.FC = () => {
           <input
             type="text"
             name="name"
-            placeholder="IngredientName"
+            autoComplete="off"
+            placeholder="Ingredient Name"
             value={newIngredient.name}
             onChange={handleIngredientChange}
-            className="ingredient-input"
+            className="ingredient-input full-width"
           />
           <input
             type="text"
@@ -125,7 +168,7 @@ const CreateRecipe: React.FC = () => {
             placeholder="Amount"
             value={newIngredient.amount}
             onChange={handleIngredientChange}
-            className="amount-input"
+            className="amount-input full-width"
           />
           <input
             type="text"
@@ -133,16 +176,19 @@ const CreateRecipe: React.FC = () => {
             placeholder="Unit"
             value={newIngredient.unit}
             onChange={handleIngredientChange}
-            className="unit-input"
+            className="unit-input full-width"
           />
-          <button 
+          <button
             onClick={addIngredient}
             className="add-btn"
+            disabled={
+              !newIngredient.name ||
+              !newIngredient.amount ||
+              !newIngredient.unit
+            }
           >
-            add
+            Add
           </button>
-
-          addPlusIcon 
         </div>
 
         {ingredients.length > 0 && (
@@ -150,6 +196,13 @@ const CreateRecipe: React.FC = () => {
             {ingredients.map((ingredient) => (
               <div key={ingredient.id} className="ingredient-item">
                 {ingredient.name} - {ingredient.amount} {ingredient.unit}
+                <button
+                  className="delete-btn"
+                  onClick={() => removeIngredient(ingredient.id)}
+                  aria-label="Remove ingredient"
+                >
+                  ×
+                </button>
               </div>
             ))}
           </div>
@@ -157,46 +210,60 @@ const CreateRecipe: React.FC = () => {
       </div>
 
       <div className="instructions-section">
-        <h3>Instruction</h3>
+        <h3>Instructions</h3>
         <textarea
           value={instructions}
           onChange={(e) => setInstructions(e.target.value)}
-          className="instructions-textarea"
+          className="instructions-textarea full-width"
           rows={6}
         />
       </div>
 
       <div className="category-section">
-        <div className="category-label">SelectCategory</div>
         <div className="category-controls">
-          <select 
-            value={category} 
-            onChange={(e) => setCategory(e.target.value)}
-            className="category-select"
-          >
-            <option value="Breakfast">Breakfast</option>
-            <option value="Lunch">Lunch</option>
-            <option value="Dinner">Dinner</option>
-            <option value="Dessert">Dessert</option>
-            <option value="Snack">Snack</option>
-          </select>
-          
-          <button className="upload-btn">
-            Upload Image
-          </button>
+          <div className="category-rating-group">
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="category-select"
+            >
+              <option value="Breakfast">Breakfast</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Dinner">Dinner</option>
+              <option value="Dessert">Dessert</option>
+              <option value="Snack">Snack</option>
+            </select>
+
+            <select
+              value={rating}
+              onChange={(e) => setRating(e.target.value)}
+              className="rating-select"
+            >
+              <option value="">Rating</option>
+              <option value="1">1 Star</option>
+              <option value="2">2 Stars</option>
+              <option value="3">3 Stars</option>
+              <option value="4">4 Stars</option>
+              <option value="5">5 Stars</option>
+            </select>
+          </div>
+
+          <div className="upload-buttons">
+            <button className="upload-video-btn">Upload Video</button>
+
+            <button className="upload-btn">Upload Image</button>
+          </div>
         </div>
       </div>
 
       <div className="action-buttons">
-        <button 
-          className="cancel-btn"
-          onClick={handleCancel}
-        >
+        <button className="cancel-btn full-width" onClick={onCancel}>
           CANCEL
         </button>
-        <button 
-          className="create-btn"
+        <button
+          className="create-btn full-width"
           onClick={handleCreateRecipe}
+          disabled={!recipeName || !ingredients.length}
         >
           CREATE RECIPE
         </button>
@@ -204,5 +271,4 @@ const CreateRecipe: React.FC = () => {
     </div>
   );
 };
-
 export default CreateRecipe;

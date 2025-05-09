@@ -3,8 +3,9 @@
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
+    background-color: var(--bg-black);
     color: white;
+    height: auto;
   }
   
   .pantry-header {
@@ -35,7 +36,7 @@
   }
   
   .add-ingredient-form {
-    background-color: #2a2a2a;
+    background-color: #242323;
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 30px;

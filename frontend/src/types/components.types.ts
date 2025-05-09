@@ -17,48 +17,62 @@ interface ISidebarMenuItem {
 
 //custom button props
 interface ICustomBtnProps {
-    handleClick?: () => void;
+    btnText: string;
     disabled: boolean;
-    btnText?: string;
-    buttonIcon?: string; //for now let's just go with string
-    // React.FunctionComponent<
-    //   React.SVGProps<SVGSVGElement> & {
-    //     title?: string;
-    //   }
-    // >;
-    buttonStyleOptions?: {
-        buttonStyles?: CSSProperties;
-        buttonTxtStyles?: CSSProperties;
-        iconStyles?: CSSProperties;
-    };
-    buttonType?: 'submit' | 'button' | 'reset';
-    roundButtonBorders?: boolean; //borders are rounded
+    variant?: "primary" | "secondary" | "outline" | "text";
+    size?: "small" | "medium" | "large";
+    icon?: React.ReactNode;
+    fullWidth?: boolean;
+    type?: "button" | "submit" | "reset";
+    handleClick?: () => void;
 };
 
-
-//for search input, for now just placeholder text
-//TODO: add handle search button ?
+//for search input
 interface ISearchInputProps {
     placeHolderText: string;
+    value?: string;
+    onChange?: (value: string) => void;
+    onSearch?: () => void;
+    onKeyPress?: (e: React.KeyboardEvent) => void;
+    autoFocus?: boolean;
 };
-
 
 //custom textfield props
 interface ICustomTextFieldProps {
-    //embeddedIconAtStart?: IconDefinition;
-    embeddedIconAtStart?: IconProp; //TODO: for now also lets just go with a string
+    embeddedIconAtStart?: IconProp;
     floatingLabel?: boolean;
     inputProps: {
-        id?: string; //optional 
-        name?: string; //optional
+        id?: string;
+        name?: string;
         type: "password" | "text";
         value: string;
-        placeHolderTxt?: string; //optional
+        placeHolderTxt?: string;
         helperTxt?: React.ReactNode;
     };
     inputStyle?: React.CSSProperties;
     disabled?: boolean;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+//category of recipe
+enum ERecipeCategory {
+    MEAT = "MEAT",
+    BEEF = "BEEF",
+    CHICKEN = "CHICKEN",
+    DESSERT = "DESSERT",
+    LAMB = "LAMB",
+    MISCELLANEOUS = "MISCELLANEOUS",
+    PASTA = "PASTA",
+    PORK = "PORK",
+    SEAFOOD = "SEAFOOD",
+    SIDE = "SIDE",
+    STARTER = "STARTER",
+    VEGAN = "VEGAN",
+    VEGETARIAN = "VEGETARIAN",
+    BREAKFAST = "BREAKFAST",
+    GOAT = "GOAT",
+    SALAD = "SALAD",
+    DINNER = "DINNER"
 };
 
 
@@ -68,42 +82,108 @@ interface IRecipe {
     title: string;
     description: string;
     image: string;
-    ingredients: {
-        name: string;
-        amount: number;
-        unit: string;
-    }[];
-    instructions: string;
-    category: string;
-    prepTime?: number; // in minutes ?
-    cookTime?: number; // in minutes ?
+    ingredients: IIngredient[];
+    instructions: string[];
+    category: ERecipeCategory;
+    cookTime?: number;
 };
-
 
 //fields on an ingredient
 interface IIngredient {
-    id: number;
+    id: number; 
     name: string;
-    amount: string;
+    amount: number;
     unit: string;
+};
+
+
+//category of pantry items  
+enum EPantryCategory {
+  OTHERS = "OTHERS",
+  BAKING = "BAKING",
+  REFRIGERATED = "REFRIGERATED",
+  SPICES = "SPICES",
+  OILS = "OILS",
+  CANNED = "CANNED",
+  PRODUCE = "PRODUCE"
+};
+
+
+//fields on pantry item 
+interface IPantryItem {
+  id: number;
+  name: string;
+  quantity: number;
+  unit: string;
+  category: EPantryCategory;
+  expiration?: string;
 };
 
 
 //for Recipes component
 interface IRecipesProps {
-    recipeFrom: "API" | "SELF" //wether recipes are coming from api or the ones I created 
+    recipeSource: "API" | "SELF"; //wether from user collection or from the API
+    recipes: IRecipe[];
+    searchQuery?: string;
 };
 
 
+//For base recipe view to render mainly the recipes 
+interface IBaseRecipeViewProps {
+    title?: string;
+    searchPlaceholder: string;
+    recipes: IRecipe[];
+    isLoading: boolean;
+    error: string | null;
+    searchQuery: string;
+    onSearchChange: (value: string) => void;
+    onKeyPress?: (e: React.KeyboardEvent) => void;
+    emptyStateImg: string;
+    emptyStateText: string;
+    emptyStateAction?: {
+        text: string;
+        onClick: () => void;
+    };
+    headerActions?: React.ReactNode;
+    headerContent?: React.ReactNode;
+    recipeSource: "API" | "SELF";
+    onRetry?: () => void;
+};
+
+
+//for recipe card component 
+interface IRecipeCardProps {
+  recipe: IRecipe;
+  onViewRecipe: (recipeId: number) => void;
+};
+
+
+//types for Create Recipe form component
+interface ICreateRecipeProps {
+  onCreateRecipe: (recipe: any) => void;
+  onCancel: () => void;
+};
+
+//types for ComingSoon Component
+interface IComingSoonProps {
+  comingSoonDate: string;
+};
 
 
 export {
+    IBaseRecipeViewProps,
     ISidebarProps,
     ISearchInputProps,
     ICustomBtnProps,
     ICustomTextFieldProps,
     ISidebarMenuItem,
     IRecipesProps,
+    ICreateRecipeProps,
     IRecipe,
-    IIngredient
+    IIngredient,
+    IPantryItem,
+    ERecipeCategory,
+    EPantryCategory,
+    IRecipeCardProps,
+    IComingSoonProps
 };

@@ -2,11 +2,13 @@ import {
     emailIcon, lockIcon,
     pantryIcon, onlineRecipeIcon,
     cookRecipe, shoppingBasketIcon,
-    userIcon
+    userIcon,
+    homeIcon
 } from "../assets/image-icons-barrel";
 import { TAuthForm } from "../types/auth.types";
 import { ISidebarMenuItem } from "../types/components.types";
 
+//TODO: Rename this file properly 
 
 
 //fields for register to pass to AuthForm
@@ -25,12 +27,12 @@ const loginFormFields: TAuthForm[] = [
 
 //sidebar menu items
 const sidebarMenuItems: ISidebarMenuItem[] = [
-    { icon: shoppingBasketIcon, itemName: "My Shopping List", itemAltAndRoute: "shopping-list", isLargeIcon: false },
-    { icon: pantryIcon, itemName: "My Pantry", itemAltAndRoute: "pantry", isLargeIcon: false },
-    { icon: onlineRecipeIcon, itemName: "Online Recipes", itemAltAndRoute: "online-recipes", isLargeIcon: true },
-    { icon: cookRecipe, itemName: "My Recipes", itemAltAndRoute: "my-recipes", isLargeIcon: true },
+    { icon: homeIcon, itemName: "Home", itemAltAndRoute: "home" },
+    { icon: shoppingBasketIcon, itemName: "Shopping List", itemAltAndRoute: "shopping-list" },
+    { icon: pantryIcon, itemName: "My Pantry", itemAltAndRoute: "pantry" },
+    { icon: onlineRecipeIcon, itemName: "Find Online", itemAltAndRoute: "online-recipes" },
+    { icon: cookRecipe, itemName: "My Recipes", itemAltAndRoute: "my-recipes" },
 ];
-
 
 export {
     registerFormFields,

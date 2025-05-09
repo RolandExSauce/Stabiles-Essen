@@ -1,101 +1,107 @@
-.button {
-    position: relative;
-    height: 55px;
-    max-width: 300px;
-    width: max-content;
-    background: hsl(0, 0%, 100%);
-    border-radius: 7px;
-    padding: 10px 22px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    display: flex; /* Ensure the button behaves correctly as a flex container */
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .button.disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-    pointer-events: none; /* Prevents all mouse events */
-  }
-  
-  .button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    height: 100%;
-    width: 100%;
-    background: rgba(52, 52, 52, 0.8);
-    border-radius: 6px;
-    color: #fff;
-    transition: left 0.3s ease; /* Smooth transition for the animation */
-  }
-  
-  .button.progress::before {
-    animation: progress 6s ease-in-out forwards;
-  }
-  
-  @keyframes progress {
-    0% {
-      left: -100%;
-    }
-    10% {
-      left: -97%;
-    }
-    20% {
-      left: -92%;
-    }
-    30% {
-      left: -82%;
-    }
-    30% {
-      left: -62%;
-    }
-    40% {
-      left: -38%;
-    }
-    50% {
-      left: -18%;
-    }
-    60% {
-      left: -14%;
-    }
-    80% {
-      left: -7%;
-    }
-    90% {
-      left: -3%;
-    }
-    100% {
-      left: 0%;
-    }
-  }
-  
-  .button .text-icon {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative; /* Ensures the elements inside are correctly positioned */
-    z-index: 1; /* Ensures text/icon is above the animated background */
-  }
-  
-  .button .text-icon i,
-  .button .text-icon span {
-    color: black;
-    font-size: 26px;
-    margin-left: 10px;
-  }
-  
-  .button .text-icon span {
-    font-size: 20px;
-    font-weight: 400;
-  }
-  
-  
-  
+.custom-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+  line-height: 1.5;
+  gap: 8px;
+}
+
+/* Button variants */
+.custom-btn--primary {
+  background-color: #0066cc;
+  color: white;
+  border-color: #0066cc;
+}
+
+.custom-btn--primary:hover:not(.custom-btn--disabled) {
+  background-color: #005bb8;
+  border-color: #005bb8;
+}
+
+.custom-btn--secondary {
+  background-color: #f0f0f0;
+  color: #333;
+  border-color: #f0f0f0;
+}
+
+.custom-btn--secondary:hover:not(.custom-btn--disabled) {
+  background-color: #e0e0e0;
+  border-color: #e0e0e0;
+}
+
+.custom-btn--outline {
+  background-color: transparent;
+  color: #0066cc;
+  border-color: #0066cc;
+}
+
+.custom-btn--outline:hover:not(.custom-btn--disabled) {
+  background-color: rgba(0, 102, 204, 0.05);
+}
+
+.custom-btn--text {
+  background-color: transparent;
+  color: #0066cc;
+  border-color: transparent;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.custom-btn--text:hover:not(.custom-btn--disabled) {
+  background-color: rgba(0, 102, 204, 0.05);
+}
+
+/* Button sizes */
+.custom-btn--small {
+  font-size: 14px;
+  padding: 6px 12px;
+}
+
+.custom-btn--medium {
+  font-size: 16px;
+  padding: 8px 16px;
+}
+
+.custom-btn--large {
+  font-size: 18px;
+  padding: 12px 24px;
+}
+
+/* Disabled state */
+.custom-btn--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Full width */
+.custom-btn--full-width {
+  width: 100%;
+}
+
+/* Icon */
+.custom-btn__icon {
+  display: flex;
+  align-items: center;
+  line-height: 0;
+}
+
+/* Focus state */
+.custom-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.3);
+}
+
+/* Active/pressed state */
+.custom-btn:active:not(.custom-btn--disabled) {
+  transform: translateY(1px);
+}

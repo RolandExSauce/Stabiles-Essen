@@ -1,0 +1,72 @@
+.coming-soon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* This will center it vertically in most of the viewport */
+  width: 100%;
+}
+
+.coming-soon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2rem;
+}
+
+.coming-soon-content {
+  display: flex;
+  align-items: center;
+  gap: 3rem; /* Increased gap for larger screens */
+  max-width: 1000px; /* Increased max-width */
+}
+
+.coming-soon-text {
+  font-size: 2rem; /* Increased base font size */
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.coming-soon-image {
+  width: 250px; /* Increased base image size */
+  height: auto;
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+  .coming-soon-text {
+    font-size: 2.5rem;
+  }
+  
+  .coming-soon-image {
+    width: 300px;
+  }
+}
+
+/* Medium screens */
+@media (max-width: 768px) {
+  .coming-soon-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .coming-soon-image {
+    width: 180px;
+  }
+  
+  .coming-soon-text {
+    font-size: 1.5rem;
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .coming-soon-image {
+    width: 140px;
+  }
+  
+  .coming-soon-text {
+    font-size: 1.2rem;
+  }
+}

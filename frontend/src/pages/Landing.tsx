@@ -1,8 +1,8 @@
 import { logoApeSpatula } from "../assets/image-icons-barrel";
 import { useNavHook } from "../tools/custom.hooks";
+import CopyrightFooter from "./layout/CopyRightFooter";
 import styles from "./styles/Landing.module.css";
 
-//TODO: attach quick guide video here, maybe as prop ? 🤔
 //landing page
 const Landing = () => {
   const { toLogin, toRegister } = useNavHook();
@@ -10,7 +10,7 @@ const Landing = () => {
     <div className={styles.landingContainer}>
       <div className={styles.titleContainer}>
         <h1 className={styles.mainTitle}>SilverBack Kitchen</h1>
-        <p className={styles.slogan}>Prepped and Primed. Now, let him cook</p>
+        <p className={styles.slogan}>Prepped and Primed. Now, time him cook</p>
       </div>
 
       <div className={styles.logoContainer}>
@@ -38,6 +38,10 @@ const Landing = () => {
         <span onClick={toLogin} className={styles.authLink}>
           Go to Login
         </span>
+      </div>
+
+      <div style={{ marginTop: 70 }}>
+        <CopyrightFooter />
       </div>
     </div>
   );

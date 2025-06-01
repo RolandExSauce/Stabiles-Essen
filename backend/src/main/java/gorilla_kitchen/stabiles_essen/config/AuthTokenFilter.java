@@ -4,6 +4,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.constraints.NotNull;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,15 +27,14 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            FilterChain filterChain
+            @NonNull HttpServletRequest request,
+            @NonNull HttpServletResponse response,
+            @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
-//        System.out.println("🌐 0. RequestLoggingFilter: incoming "
-//                + request.getMethod() + " " + request.getRequestURI());
-//        filterChain.doFilter(request, response);
-
-
+        //System.out.println("🌐 0. RequestLoggingFilter: incoming "
+        // + request.getMethod() + " " + request.getRequestURI());
+        //filterChain.doFilter(request, response);
+        
         try {
             String jwt = parseJwt(request);
             if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
@@ -53,7 +54,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             System.out.println("Cannot set user authentication: " + e);
         }
         filterChain.doFilter(request, response);
-//        System.out.println("🌐 0. RequestLoggingFilter: outgoing response " + response.getStatus());
+        //System.out.println("🌐 0. RequestLoggingFilter: outgoing response " + response.getStatus());
     };
 
     //extract jwt token from auth header

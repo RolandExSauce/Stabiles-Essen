@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import static org.springframework.security.config.Customizer.withDefaults;
 
 //sources used: https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/form.html
 //https://medium.com/@victoronu/implementing-jwt-authentication-in-a-simple-spring-boot-application-with-java-b3135dbdb17b
@@ -61,7 +62,8 @@ public class SecurityConfig {
         http
                 //For now let's disable CORS, but we can config later
                 .csrf(AbstractHttpConfigurer::disable) // Disable CSRF
-                .cors(AbstractHttpConfigurer::disable) // Disable CORS
+                //.cors(AbstractHttpConfigurer::disable) // Disable CORS
+                .cors(withDefaults())
                 .exceptionHandling(exceptionHandling ->
                         exceptionHandling.authenticationEntryPoint(unauthorizedHandler)
                 )
@@ -71,8 +73,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(
-                                        "/api/auth/**",               // <-- match your controller
-                                        "/silverbackkitchen/test/all"
+                                        "/silverbackkitchen/auth/**",
+                                        "/silverbackkitchen/test/all",
+                                        "/swagger-ui/**",
+                                        "/v3/api-docs/**"
                                 ).permitAll()
                                 .anyRequest().authenticated()
                 )

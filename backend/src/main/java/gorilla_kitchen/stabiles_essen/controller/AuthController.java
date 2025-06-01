@@ -2,6 +2,7 @@ package gorilla_kitchen.stabiles_essen.controller;
 import com.mongodb.DuplicateKeyException;
 import gorilla_kitchen.stabiles_essen.dto.*;
 import gorilla_kitchen.stabiles_essen.service.AuthService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
@@ -13,13 +14,14 @@ import org.springframework.web.server.ResponseStatusException;
 
 //auth controller for login and register
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/silverbackkitchen/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
     private final  AuthService authService;
 
-    //signin controller
+
+    @Operation(summary = "Sign in", description = "Authenticate user and return a JWT token")
     @PostMapping("/signin")
     public AuthDTOs.AuthResponse authenticateUser(@RequestBody AuthDTOs.LoginRequest loginRequest) {
 
@@ -34,7 +36,7 @@ public class AuthController {
         }
     };
 
-    //signup controller
+    @Operation(summary = "Sign up", description = "Register a new user")
     @PostMapping("/signup")
     public AuthDTOs.AuthResponse registerUser(@RequestBody AuthDTOs.RegisterRequest registerRequest) {
         try {

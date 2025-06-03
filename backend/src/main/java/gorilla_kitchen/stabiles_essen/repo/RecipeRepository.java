@@ -1,10 +1,4 @@
 package gorilla_kitchen.stabiles_essen.repo;
-
-/*
-  MOHAMMED TODO: ADD methods/query methods for RecipeRepository here to ADD and
-  DELETE a Recipe from the recipes List of the  user
- */
-
 import gorilla_kitchen.stabiles_essen.model.RecipeModel;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
@@ -19,5 +13,4 @@ import org.springframework.stereotype.Repository;
 public interface RecipeRepository extends MongoRepository<RecipeModel, String> {
 
     // Basic CRUD methods like save(), findById(), deleteById() are inherited from MongoRepository.
-
 };

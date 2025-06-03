@@ -1,10 +1,4 @@
 package gorilla_kitchen.stabiles_essen.repo;
-
-/*
-  MOHAMMED TODO: ADD methods/query methods for PantryRepository here to ADD and
-  DELETE a PantryItem from the Pantry List of the user
- */
-
 import gorilla_kitchen.stabiles_essen.model.PantryItemModel;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

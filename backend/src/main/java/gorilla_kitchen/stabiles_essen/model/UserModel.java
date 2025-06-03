@@ -27,7 +27,7 @@ public class UserModel {
     private String email;
     private String password; //Will store encoded password
 
-    //MOHAMMED TODO: add fields here
+    //reference to pantry and recipes by id
     private List<String> pantryItemIds; // References to PantryItemModel documents
     private List<String> recipeIds; // References to RecipeModel documents
 

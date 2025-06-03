@@ -1,16 +1,14 @@
 package gorilla_kitchen.stabiles_essen.controller;
-
 import gorilla_kitchen.stabiles_essen.model.PantryItemModel;
 import gorilla_kitchen.stabiles_essen.service.PantryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
 /*
-  MOHAMMED TODO: Use methods/query methods from PantryService here to make
-            the requests
+TODO: missing get all pantry items
+TODO: Test with Postman
 */
 @RestController
 @RequestMapping("/api/pantry")

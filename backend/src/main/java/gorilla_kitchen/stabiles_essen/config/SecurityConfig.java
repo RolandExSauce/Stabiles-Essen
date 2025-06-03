@@ -1,5 +1,5 @@
 package gorilla_kitchen.stabiles_essen.config;
-import gorilla_kitchen.stabiles_essen.utils.CustomUDS;
+import gorilla_kitchen.stabiles_essen.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,16 +23,16 @@ public class SecurityConfig {
 
     private final JwtUtil jwtUtils;
 
-    private final CustomUDS userDetailsService;
+    private final CustomUserDetailsService userDetailsService;
 
     private final AuthEntryPointJwt unauthorizedHandler;
 
     public SecurityConfig(
-            CustomUDS customUDS,
+            CustomUserDetailsService customUserDetailsService,
             AuthEntryPointJwt unauthorizedHandler,
             JwtUtil jwtUtils
     ) {
-        this.userDetailsService = customUDS;
+        this.userDetailsService = customUserDetailsService;
         this.unauthorizedHandler = unauthorizedHandler;
         this.jwtUtils = jwtUtils;
     };

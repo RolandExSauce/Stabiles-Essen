@@ -1,10 +1,10 @@
 package gorilla_kitchen.stabiles_essen.model;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import org.springframework.data.annotation.Id;
 import java.util.List;
+
 
 //Define a recipe document, this Recipe Model refers To OUR RECIPES, so the
 //private ones, the others will come via API requests from theMealDB
@@ -12,12 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RecipeModel {
-
-    /*
-    TODO: add fields for a recipe document based on the screenshot inside this folder:
-    src/main/java/ressources/static/create_recipe_fields
-     */
-
+    @Id
+    private String id;
     private String name;
     private int durationInMinutes;
     private int rating;
@@ -33,5 +29,5 @@ public class RecipeModel {
         private String name;
         private double amount;
         private String unit;
-    }
-}
+    };
+};

@@ -1,4 +1,4 @@
-package gorilla_kitchen.stabiles_essen.utils;
+package gorilla_kitchen.stabiles_essen.service;
 import gorilla_kitchen.stabiles_essen.model.UserModel;
 import gorilla_kitchen.stabiles_essen.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,7 @@ import java.util.Collections;
 //create a custom user detail service class using user details service
 @Service
 @RequiredArgsConstructor
-public class CustomUDS implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 

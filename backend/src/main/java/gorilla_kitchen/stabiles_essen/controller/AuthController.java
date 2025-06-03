@@ -20,7 +20,6 @@ public class AuthController {
 
     private final  AuthService authService;
 
-
     @Operation(summary = "Sign in", description = "Authenticate user and return a JWT token")
     @PostMapping("/signin")
     public AuthDTOs.AuthResponse authenticateUser(@RequestBody AuthDTOs.LoginRequest loginRequest) {

@@ -19,6 +19,9 @@ public class KitchenDTOs {
         private String category;
     };
 
+
+    //TODO: add field category e.g. BAKING, OILS etc.
+    //Also just create a enum for that, just call it ItemCategory
     @Data
     @AllArgsConstructor
     public static class CreatePantryItemDTO {

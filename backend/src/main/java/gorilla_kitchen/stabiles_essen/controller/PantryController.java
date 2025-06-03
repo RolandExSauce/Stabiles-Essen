@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 /*
 TODO: missing get all pantry items
-TODO: Test with Postman
+TODO: Test with Postman (Token from login has to be in Authorization Header)
 */
 @RestController
 @RequestMapping("/api/pantry")

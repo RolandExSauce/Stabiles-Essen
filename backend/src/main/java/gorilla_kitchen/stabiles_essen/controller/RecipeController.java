@@ -10,7 +10,7 @@ import java.util.Optional;
 //fetch some recipes from backend using MealDB API just to fill frontend section
 //use REST Template and just fetch from this endpoint: www.themealdb.com/api/json/v1/1/search.php?f=a
 //TODO: use the Kitchen DTOs instead of the models
-//TODO: Test with Postman
+//TODO: Test with Postman (Token from login has to be in Authorization Header)
 
 
 @RestController

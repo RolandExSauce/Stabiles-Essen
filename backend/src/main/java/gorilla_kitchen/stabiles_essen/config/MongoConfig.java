@@ -1,31 +1,31 @@
 package gorilla_kitchen.stabiles_essen.config;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
+import lombok.NonNull;
 
 
-    //config mongo db
+    //config mongo db, maybe actually not needed unless for further config
     @Configuration
-    @PropertySource("classpath:/application.properties")
+    @PropertySource("classpath:/mongo.properties")
     public class MongoConfig extends AbstractMongoClientConfiguration {
 
-        @Value("${mongo.data.mongodb.username}")
+        @Value("${mongo.username}")
         private String username;
 
-        @Value("${mongo.data.mongodb.password}")
+        @Value("${mongo.password}")
         private String password;
 
-        @Value("${mongo.data.mongodb.host:localhost}")
+        @Value("${mongo.host:localhost}")
         private String host;
 
-        @Value("${mongo.data.mongodb.port:27017}")
+        @Value("${mongo.port:27017}")
         private String port;
 
-        @Value("${mongo.data.mongodb.database:default_kitchen_db}")
+        @Value("${mongo.database:default_kitchen_db}")
         private String database;
 
         @NonNull

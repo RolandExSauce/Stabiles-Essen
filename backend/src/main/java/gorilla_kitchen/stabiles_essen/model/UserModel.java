@@ -1,9 +1,11 @@
 package gorilla_kitchen.stabiles_essen.model;
+
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.List;
 
      /*
   MOHAMMED TODO: don't change the existing code, what you should do:
@@ -14,7 +16,6 @@ WICHTIG: REFERENCES ! => similar to foreign key in SQL
   List<PantryItemModel> pantryList ....
   List<RecipeMovel> recipeList...
  or even better using MAP 🤔?
-
      */
 
 @Data
@@ -27,9 +28,8 @@ public class UserModel {
     private String password; //Will store encoded password
 
     //MOHAMMED TODO: add fields here
-
-
-
+    private List<String> pantryItemIds; // References to PantryItemModel documents
+    private List<String> recipeIds; // References to RecipeModel documents
 
     //constructor with only username and email
     public UserModel(String username, String email) {

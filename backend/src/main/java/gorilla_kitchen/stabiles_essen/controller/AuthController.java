@@ -27,7 +27,6 @@ public class AuthController {
         //To get a better understanding how spring security works, console.log the data from below
         //they should be printed after the filter
         System.out.println("Login request: " + loginRequest);
-        System.out.println("check if controller reached before filter kicks in");
         try {
             return authService.authenticateUser(loginRequest);
         } catch (AuthenticationException e) {

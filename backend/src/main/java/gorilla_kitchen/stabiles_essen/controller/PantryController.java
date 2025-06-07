@@ -25,7 +25,7 @@ public class PantryController {
     public ResponseEntity<PantryItemModel> addPantryItem(@RequestBody PantryItemModel item) {
         PantryItemModel savedItem = pantryService.addPantryItem(item);
         return ResponseEntity.ok(savedItem);
-    }
+    };
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deletePantryItem(@PathVariable String id) {
@@ -35,5 +35,5 @@ public class PantryController {
         } else {
             return ResponseEntity.notFound().build();
         }
-    }
-}
+    };
+};

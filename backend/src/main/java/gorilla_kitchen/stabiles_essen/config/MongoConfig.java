@@ -10,7 +10,7 @@ import lombok.NonNull;
 
     //config mongo db, maybe actually not needed unless for further config
     @Configuration
-    @PropertySource("classpath:/mongo.properties")
+    @PropertySource("classpath:/application.properties")
     public class MongoConfig extends AbstractMongoClientConfiguration {
 
         @Value("${mongo.username}")

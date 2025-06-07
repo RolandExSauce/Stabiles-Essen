@@ -22,7 +22,7 @@ public class RecipeController {
     @Autowired
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
-    }
+    };
 
     @PostMapping("/add")
     public ResponseEntity<RecipeModel> addRecipe(@RequestBody RecipeModel recipe) {
@@ -45,4 +45,4 @@ public class RecipeController {
         Optional<RecipeModel> result = recipeService.updateRecipe(id, updatedRecipe);
         return result.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     };
-}
+};

@@ -1,7 +1,6 @@
 package gorilla_kitchen.stabiles_essen.service;
 import gorilla_kitchen.stabiles_essen.model.RecipeModel;
 import gorilla_kitchen.stabiles_essen.repo.RecipeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
@@ -14,11 +13,11 @@ public class RecipeService {
 
     public RecipeService(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
-    }
+    };
 
     public RecipeModel addRecipe(RecipeModel recipe) {
         return recipeRepository.save(recipe);
-    }
+    };
 
     public boolean deleteRecipe(String recipeId) {
         Optional<RecipeModel> recipe = recipeRepository.findById(recipeId);

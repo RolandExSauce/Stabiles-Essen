@@ -21,8 +21,6 @@ public class AuthService {
     //authenticate the user
     public AuthDTOs.AuthResponse authenticateUser(AuthDTOs.LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
-
-                //Will this work or do I need to create a custom authentication token ?
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getUsername(),
                         loginRequest.getPassword()

@@ -29,6 +29,7 @@ interface IAuthForm {
     buttonLabel: string;
     footerText: string;
     footerLinkLabel: string;
+    err?: string; 
     onSubmit?: (e: TEventSubmit) => void; //will handle the form submit 
 };
 

@@ -1,35 +1,13 @@
 import AuthForm from "./layout/AuthForm";
 import { loginFormFields } from "../config/menusAndForms";
-import { TEventSubmit } from "../types/auth.types";
+import { ILogin } from "../types/auth.types";
 import { useLogin } from "../hooks/useAuth";
-import { useNavHook } from "../hooks/utility.hooks";
+import { useAuthForm } from "../hooks/useAuthFormReturn";
 
 //login page
 const Login = () => {
-  const { toHome } = useNavHook();
   const loginMutation = useLogin();
-
-  const handleSubmit = async (e: TEventSubmit) => {
-    e.preventDefault(); //prevent default
-    const form = e.currentTarget;
-    const formData = new FormData(form); //read input values
-
-    const credentials = {
-      username: String(formData.get("username")),
-      password: String(formData.get("password")),
-    };
-
-    console.log("login: ", credentials)
-    try {
-      const data = await loginMutation.mutateAsync(credentials);
-      localStorage.setItem("token", data.token); // store token
-
-      console.log("url: ", import.meta.env.VITE_API_URL);
-      toHome();
-    } catch (error) {
-      console.error("Login failed", error);
-    }
-  };
+  const { err, handleSubmit } = useAuthForm<ILogin>();
   return (
     <AuthForm
       title="Login"
@@ -37,7 +15,11 @@ const Login = () => {
       buttonLabel="Login"
       footerText="Don't have an account?"
       footerLinkLabel="Register"
-      onSubmit={handleSubmit}
+      err={err}
+      onSubmit={handleSubmit(loginMutation.mutateAsync, [
+        "username",
+        "password",
+      ])}
     />
   );
 };

@@ -9,6 +9,7 @@ const AuthForm = ({
   buttonLabel,
   footerText,
   footerLinkLabel,
+  err,
   onSubmit,
 }: IAuthForm) => {
   const { toLogin, toRegister } = useNavHook();
@@ -19,7 +20,7 @@ const AuthForm = ({
         <h2 className={styles.formTitle}>{title}</h2>
 
         <form className={styles.authForm} onSubmit={onSubmit}>
-          {fields.map(({ icon, placeholder,name, type }, index) => (
+          {fields.map(({ icon, placeholder, name, type }, index) => (
             <div className={styles.inputGroup} key={index}>
               <div className={styles.inputField}>
                 <div className={styles.iconWrapper}>
@@ -46,6 +47,8 @@ const AuthForm = ({
           </button>
         </form>
 
+        {err && <span style={{ color: "red", marginTop: 30 }}>{err}</span>}
+
         <div className={styles.footerText}>
           {footerText}
           <span
@@ -64,5 +67,4 @@ const AuthForm = ({
     </div>
   );
 };
-
 export default AuthForm;

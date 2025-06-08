@@ -1,5 +1,5 @@
 import { logoApeSpatula } from "../assets/image-icons-barrel";
-import { useNavHook } from "../tools/custom.hooks";
+import { useNavHook } from "../hooks/utility.hooks";
 import CopyrightFooter from "./layout/CopyRightFooter";
 import styles from "./styles/Landing.module.css";
 

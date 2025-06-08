@@ -5,7 +5,7 @@ import {
   userIconWhite,
   userIcon,
 } from "../../assets/image-icons-barrel";
-import { sidebarMenuItems } from "../../tools/menusAndForms";
+import { sidebarMenuItems } from "../../config/menusAndForms";
 import {
   faChevronLeft,
   faChevronRight,
@@ -13,12 +13,12 @@ import {
 import "./Sidebar.css";
 import { useState } from "react";
 import { ISidebarProps } from "../../types/components.types";
-import { useNavHook } from "../../tools/custom.hooks";
+import { useNavHook } from "../../hooks/utility.hooks";
 import { useLocation } from "react-router";
 
 //Sidebar
 const Sidebar: React.FC<ISidebarProps> = ({ onToggle }) => {
-  const { toRoute } = useNavHook();
+  const { toLogin, toRoute } = useNavHook();
   const [isMinimized, setIsMinimized] = useState(false);
 
   //sidebar toggle
@@ -31,6 +31,11 @@ const Sidebar: React.FC<ISidebarProps> = ({ onToggle }) => {
   };
 
   const location = useLocation();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // or sessionStorage.clear()
+    toLogin();
+  };
 
   return (
     <section className={`sidebar ${isMinimized ? "minimized" : ""}`}>
@@ -101,7 +106,7 @@ const Sidebar: React.FC<ISidebarProps> = ({ onToggle }) => {
             </div>
           </button>
 
-          <button className="footer-item logout-button">
+          <button className="footer-item logout-button" onClick={handleLogout}>
             <div className="footer-item-content">
               <img
                 src={logoutIcon}

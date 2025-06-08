@@ -1,14 +1,11 @@
 import { Navigate, Outlet } from "react-router";
 import { useLocation } from "react-router-dom";
 import { logoApeAndTitleFaded } from "../../assets/image-icons-barrel";
-import { useNavHook } from "../../tools/custom.hooks";
+import { useNavHook } from "../../hooks/utility.hooks";
 import CopyrightFooter from "./CopyRightFooter";
-
-
 
 //Auth layout, will handle if user is authenticated or not
 const AuthLayout = () => {
-
   const isAuthenticated = false; // manually simulate logged-in state
   const location = useLocation();
   const { toLanding } = useNavHook();

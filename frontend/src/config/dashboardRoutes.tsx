@@ -8,8 +8,6 @@ import Home from "../pages/Home";
 import { Outlet } from "react-router";
 import MyPantry from "../components/views/components/MyPantry";
 
-
-
 //layout component for pages that should include the sidebar
 export const DashboardLayout = () => {
   const [sidebarMinimized, setSidebarMinimized] = useState(false);

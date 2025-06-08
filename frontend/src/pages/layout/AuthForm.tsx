@@ -1,7 +1,6 @@
 import { IAuthForm } from "../../types/auth.types";
-import { useNavHook } from "../../tools/custom.hooks";
+import { useNavHook } from "../../hooks/utility.hooks";
 import styles from "../styles/AuthForm.module.css";
-
 
 // Reusable auth form, can be used for register and login
 const AuthForm = ({
@@ -13,23 +12,27 @@ const AuthForm = ({
   onSubmit,
 }: IAuthForm) => {
   const { toLogin, toRegister } = useNavHook();
+
   return (
     <div className={styles.authContainer}>
       <div className={styles.formWrapper}>
         <h2 className={styles.formTitle}>{title}</h2>
 
         <form className={styles.authForm} onSubmit={onSubmit}>
-          {fields.map(({ icon, placeholder, type }, index) => (
+          {fields.map(({ icon, placeholder,name, type }, index) => (
             <div className={styles.inputGroup} key={index}>
               <div className={styles.inputField}>
-                <div>
+                <div className={styles.iconWrapper}>
                   <img src={icon} alt="icon" width={20} height={20} />
                 </div>
                 <input
                   type={type}
-                  name={placeholder.toLowerCase()}
-                  className={type === "password" ? styles.passwordInput : ""}
-                  style={type === "password" ? { color: "#474747" } : {}}
+                  name={name}
+                  className={
+                    type === "password"
+                      ? styles.passwordInput
+                      : styles.textInput
+                  }
                   placeholder={placeholder}
                   autoComplete="off"
                   required
@@ -61,4 +64,5 @@ const AuthForm = ({
     </div>
   );
 };
+
 export default AuthForm;

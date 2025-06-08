@@ -37,6 +37,7 @@ public class AuthController {
     @Operation(summary = "Sign up", description = "Register a new user")
     @PostMapping("/signup")
     public AuthDTOs.AuthResponse registerUser(@RequestBody AuthDTOs.RegisterRequest registerRequest) {
+        System.out.println("Register request: " + registerRequest);
         try {
             return authService.registerUser(registerRequest);
         } catch (DuplicateKeyException e) {

@@ -1,21 +1,13 @@
 import AuthForm from "./layout/AuthForm";
-import { loginFormFields } from "../tools/menusAndForms";
-import { TEventSubmit } from "../types/auth.types";
+import { loginFormFields } from "../config/menusAndForms";
+import { ILogin } from "../types/auth.types";
+import { useLogin } from "../hooks/useAuth";
+import { useAuthForm } from "../hooks/useAuthFormReturn";
 
 //login page
 const Login = () => {
-  const handleSubmit = (e: TEventSubmit) => {
-    e.preventDefault(); //prevent default
-    const form = e.currentTarget;
-    const formData = new FormData(form); //read input values
-
-    const email = formData.get("username");
-    const password = formData.get("password");
-
-    // console.log("email: ", email);
-    // console.log("password: ", password);
-  };
-
+  const loginMutation = useLogin();
+  const { err, handleSubmit } = useAuthForm<ILogin>();
   return (
     <AuthForm
       title="Login"
@@ -23,7 +15,11 @@ const Login = () => {
       buttonLabel="Login"
       footerText="Don't have an account?"
       footerLinkLabel="Register"
-      onSubmit={handleSubmit}
+      err={err}
+      onSubmit={handleSubmit(loginMutation.mutateAsync, [
+        "username",
+        "password",
+      ])}
     />
   );
 };

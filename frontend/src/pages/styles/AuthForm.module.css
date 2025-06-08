@@ -41,8 +41,13 @@
   width: 100%;
 }
 
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
 
-.icon img {
+.iconWrapper img {
   width: 20px;
   height: 20px;
   object-fit: contain;
@@ -55,26 +60,40 @@
   padding: 0.8rem 0.5rem;
   font-size: clamp(14px, 3vw, 16px);
   outline: none;
+  font-family: inherit;
+}
+
+/* Text inputs */
+.textInput {
   color: #474747;
 }
 
-
-/* TODO: fix here */
-.passwordInput {
-  color: #000 !important; 
-  -webkit-text-security: disc !important;
-  background-color: #e8e8e8 !important;
-}
-
-
-/* TODO: fix here */
-/* This forces browser defaults for password fields */
-input[type="password"] {
-  color: #000 !important;
-  opacity: 1 !important;
-}
-.inputField input::placeholder {
+.textInput::placeholder {
   color: #666;
+}
+
+/* Password inputs */
+.passwordInput {
+  color: #474747;
+}
+
+.passwordInput::placeholder {
+  color: #666;
+}
+
+/* Password obscuring */
+input[type="password"] {
+  -webkit-text-security: disc;
+  font-family: inherit;
+}
+
+/* Webkit autofill override */
+input[type="password"]:-webkit-autofill,
+input[type="password"]:-webkit-autofill:hover,
+input[type="password"]:-webkit-autofill:focus {
+  -webkit-text-fill-color: #474747;
+  -webkit-text-security: disc;
+  -webkit-box-shadow: 0 0 0px 1000px #e8e8e8 inset;
 }
 
 .authButton {

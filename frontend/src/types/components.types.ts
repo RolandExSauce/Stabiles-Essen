@@ -90,7 +90,7 @@ interface IRecipe {
 
 //fields on an ingredient
 interface IIngredient {
-    id: number; 
+    id: number;
     name: string;
     amount: number;
     unit: string;
@@ -99,24 +99,24 @@ interface IIngredient {
 
 //category of pantry items  
 enum EPantryCategory {
-  OTHERS = "OTHERS",
-  BAKING = "BAKING",
-  REFRIGERATED = "REFRIGERATED",
-  SPICES = "SPICES",
-  OILS = "OILS",
-  CANNED = "CANNED",
-  PRODUCE = "PRODUCE"
+    OTHERS = "OTHERS",
+    BAKING = "BAKING",
+    REFRIGERATED = "REFRIGERATED",
+    SPICES = "SPICES",
+    OILS = "OILS",
+    CANNED = "CANNED",
+    PRODUCE = "PRODUCE"
 };
 
 
 //fields on pantry item 
 interface IPantryItem {
-  id: number;
-  name: string;
-  quantity: number;
-  unit: string;
-  category: EPantryCategory;
-  expiration?: string;
+    id: number;
+    name: string;
+    quantity: number;
+    unit: string;
+    category: EPantryCategory;
+    expiration?: string;
 };
 
 
@@ -153,22 +153,35 @@ interface IBaseRecipeViewProps {
 
 //for recipe card component 
 interface IRecipeCardProps {
-  recipe: IRecipe;
-  onViewRecipe: (recipeId: number) => void;
+    recipe: IRecipe;
+    onViewRecipe: (recipeId: number) => void;
 };
 
 
 //types for Create Recipe form component
 interface ICreateRecipeProps {
-  onCreateRecipe: (recipe: any) => void;
-  onCancel: () => void;
+    onCreateRecipe: (recipe: any) => void;
+    onCancel: () => void;
 };
 
 //types for ComingSoon Component
 interface IComingSoonProps {
-  comingSoonDate: string;
+    comingSoonDate: string;
 };
 
+//credentials for login/register 
+type Credentials = Record<string, string>;
+
+interface UseAuthFormReturn {
+    err: string;
+    handleSubmit: (mutateFn: (creds: Credentials) => Promise<any>, extraFields?: string[]) => (e: React.FormEvent<HTMLFormElement>) => void;
+};
+
+interface IAuthResponse {
+    username: string;
+    email: string;
+    token: string;
+};
 
 export {
     IBaseRecipeViewProps,
@@ -185,5 +198,8 @@ export {
     ERecipeCategory,
     EPantryCategory,
     IRecipeCardProps,
-    IComingSoonProps
+    IComingSoonProps,
+    UseAuthFormReturn,
+    Credentials,
+    IAuthResponse
 };

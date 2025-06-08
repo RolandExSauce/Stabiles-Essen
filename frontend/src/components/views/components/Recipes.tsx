@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { recipeData } from "../../../api/dummy.data";
-import { useNavHook } from "../../../tools/custom.hooks";
+import { useNavHook } from "../../../hooks/utility.hooks";
 import { IRecipesProps, IRecipe } from "../../../types/components.types";
 import RecipeCard from "./RecipeCard";
 import "../styles/Recipes.css";
 
-
 //recipes component
-const Recipes: React.FC<IRecipesProps> = ({ 
-  recipeSource, 
+const Recipes: React.FC<IRecipesProps> = ({
+  recipeSource,
   searchQuery = "",
-  recipes = recipeData // Allow passing custom recipes or use dummy data
+  recipes = recipeData, // Allow passing custom recipes or use dummy data
 }) => {
   const { toRoute } = useNavHook();
   const [filteredRecipes, setFilteredRecipes] = useState<IRecipe[]>(recipes);
@@ -24,18 +23,22 @@ const Recipes: React.FC<IRecipesProps> = ({
     }
 
     const lowerCaseQuery = searchQuery.toLowerCase();
-    const filtered = recipes.filter(recipe =>
-      recipe.title.toLowerCase().includes(lowerCaseQuery) ||
-      (recipe.description && recipe.description.toLowerCase().includes(lowerCaseQuery)) ||
-      recipe.category.toLowerCase().includes(lowerCaseQuery)
+    const filtered = recipes.filter(
+      (recipe) =>
+        recipe.title.toLowerCase().includes(lowerCaseQuery) ||
+        (recipe.description &&
+          recipe.description.toLowerCase().includes(lowerCaseQuery)) ||
+        recipe.category.toLowerCase().includes(lowerCaseQuery)
     );
-    
+
     setFilteredRecipes(filtered);
   }, [searchQuery, recipes]);
 
   const handleViewRecipe = (recipeId: number) => {
     toRoute(
-      `${recipeSource === "API" ? "online-recipes" : "my-recipes"}/recipe/${recipeId}`
+      `${
+        recipeSource === "API" ? "online-recipes" : "my-recipes"
+      }/recipe/${recipeId}`
     );
   };
 
@@ -55,10 +58,7 @@ const Recipes: React.FC<IRecipesProps> = ({
     <div className="recipes-grid">
       {filteredRecipes.map((recipe) => (
         <div className="recipes-grid-item" key={recipe.id}>
-          <RecipeCard
-            recipe={recipe}
-            onViewRecipe={handleViewRecipe}
-          />
+          <RecipeCard recipe={recipe} onViewRecipe={handleViewRecipe} />
         </div>
       ))}
     </div>

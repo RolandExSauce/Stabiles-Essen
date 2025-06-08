@@ -1,33 +1,27 @@
 import AuthForm from "./layout/AuthForm";
-import { registerFormFields } from "../tools/menusAndForms";
-import { TEventSubmit } from "../types/auth.types";
+import { registerFormFields } from "../config/menusAndForms";
+import { IRegister } from "../types/auth.types";
+import { useRegister } from "../hooks/useAuth";
+import { useAuthForm } from "../hooks/useAuthFormReturn";
 
 //register page
 const Register = () => {
-  const handleSubmit = (e: TEventSubmit) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-
-    const username = formData.get("username");
-    const email = formData.get("password");
-    const password = formData.get("password");
-
-    console.log("username: ", username);
-    console.log("email: ", email);
-    console.log("password: ", password);
-  };
-
+  const registerMutation = useRegister();
+  const { err, handleSubmit } = useAuthForm<IRegister>();
   return (
     <AuthForm
       title="Register"
       fields={registerFormFields}
       buttonLabel="Register"
       footerText="Already registered?"
-      footerLinkLabel="Login"
-      onSubmit={handleSubmit}
+      footerLinkLabel="login"
+      err={err}
+      onSubmit={handleSubmit(registerMutation.mutateAsync, [
+        "email",
+        "username",
+        "password",
+      ])}
     />
   );
 };
-
 export default Register;

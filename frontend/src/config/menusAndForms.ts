@@ -8,22 +8,23 @@ import {
 import { TAuthForm } from "../types/auth.types";
 import { ISidebarMenuItem } from "../types/components.types";
 
-//TODO: Rename this file properly 
+
+//TODO: temporarily use "text" as type for password field 
+//cuz color is not visible if its type "password "
 
 
 //fields for register to pass to AuthForm
 const registerFormFields: TAuthForm[] = [
-    { type: "text", placeholder: "Username", icon: userIcon },
-    { type: "email", placeholder: "E-Mail Address", icon: emailIcon },
-    { type: "password", placeholder: "Password", icon: lockIcon },
+    { type: "email", name: "email", placeholder: "E-Mail Address", icon: emailIcon },
+    { type: "text", name: "username", placeholder: "Username", icon: userIcon },
+    { type: "text", name: "password", placeholder: "Password", icon: lockIcon },
 ];
 
 //same for login 
 const loginFormFields: TAuthForm[] = [
-    { type: "text", placeholder: "Username", icon: userIcon },
-    { type: "password", placeholder: "Password", icon: lockIcon },
+    { type: "text", name: "username", placeholder: "Username", icon: userIcon },
+    { type: "text", name: "password", placeholder: "Password", icon: lockIcon },
 ];
-
 
 //sidebar menu items
 const sidebarMenuItems: ISidebarMenuItem[] = [

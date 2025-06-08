@@ -1,4 +1,5 @@
 package gorilla_kitchen.stabiles_essen.dto;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import java.util.List;
@@ -17,11 +18,10 @@ public class KitchenDTOs {
         private int preparationTimeInMinutes;
         private String instructions;
         private String category;
-    };
-
+    }
 
     //TODO: add field category e.g. BAKING, OILS etc.
-    //Also just create a enum for that, just call it ItemCategory
+    //Also just create a enum for that, just call it ItemCategory +
     @Data
     @AllArgsConstructor
     public static class CreatePantryItemDTO {
@@ -29,6 +29,17 @@ public class KitchenDTOs {
         private int quantity;
         private String unit; // e.g., grams, Liters, pieces
         private String expirationDate; // could be LocalDate if parsed
-    };
+        private ItemCategory itemCategory; // added category field for pantry classification
+    }
 
-};
+    // Enum for pantry item categories
+    public enum ItemCategory {
+        BAKING,
+        OILS,
+        SPICES,
+        VEGETABLES,
+        FRUITS,
+        MEAT,
+        OTHER
+    }
+}

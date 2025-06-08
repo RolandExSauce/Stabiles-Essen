@@ -1,4 +1,5 @@
 package gorilla_kitchen.stabiles_essen.controller;
+
 import gorilla_kitchen.stabiles_essen.model.PantryItemModel;
 import gorilla_kitchen.stabiles_essen.service.PantryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 /*
-TODO: missing get all pantry items
+TODO: missing get all pantry items +
 TODO: Test with Postman (Token from login has to be in Authorization Header)
 */
 @RestController
@@ -25,7 +26,7 @@ public class PantryController {
     public ResponseEntity<PantryItemModel> addPantryItem(@RequestBody PantryItemModel item) {
         PantryItemModel savedItem = pantryService.addPantryItem(item);
         return ResponseEntity.ok(savedItem);
-    };
+    }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deletePantryItem(@PathVariable String id) {
@@ -35,5 +36,10 @@ public class PantryController {
         } else {
             return ResponseEntity.notFound().build();
         }
-    };
-};
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllPantryItems() {
+        return ResponseEntity.ok(pantryService.getAllPantryItems());
+    } // Added endpoint to retrieve all pantry items
+}

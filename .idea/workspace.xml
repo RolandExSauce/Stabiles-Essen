@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28f57de9-9e00-4951-9847-03916d0c8086" name="Changes" comment="conflicts solved">
+    <list default="true" id="28f57de9-9e00-4951-9847-03916d0c8086" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/dto/ExternalRecipeDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/controller/PantryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/controller/PantryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/controller/RecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/controller/RecipeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/dto/KitchenDTOs.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/dto/KitchenDTOs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/model/PantryItemModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/model/PantryItemModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/model/RecipeModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/model/RecipeModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/model/UserModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/repo/PantryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/repo/PantryRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/repo/RecipeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/repo/RecipeRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/service/PantryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/service/PantryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/service/RecipeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/gorilla_kitchen/stabiles_essen/service/RecipeService.java" afterDir="false" />
@@ -102,6 +100,10 @@
       <workItem from="1743678144216" duration="84000" />
       <workItem from="1748946065804" duration="757000" />
       <workItem from="1748946833591" duration="6534000" />
+      <workItem from="1748953906413" duration="662000" />
+      <workItem from="1749293254585" duration="4624000" />
+      <workItem from="1749374088107" duration="233000" />
+      <workItem from="1749374325342" duration="7550000" />
     </task>
     <task id="LOCAL-00001" summary="conflicts solved">
       <option name="closed" value="true" />
@@ -117,8 +119,20 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="conflicts solved" />
-    <option name="LAST_COMMIT_MESSAGE" value="conflicts solved" />
+    <MESSAGE value="Completed MOHAMMED TODO tasks: Added recipe and pantry logic across DTO, Model, Repository, Service, and Controller layers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed MOHAMMED TODO tasks: Added recipe and pantry logic across DTO, Model, Repository, Service, and Controller layers" />
   </component>
 </project>

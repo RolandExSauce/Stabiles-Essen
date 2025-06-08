@@ -1,9 +1,13 @@
 package gorilla_kitchen.stabiles_essen.controller;
+
 import gorilla_kitchen.stabiles_essen.model.RecipeModel;
 import gorilla_kitchen.stabiles_essen.service.RecipeService;
+import gorilla_kitchen.stabiles_essen.dto.ExternalRecipeDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Optional;
 
 //TODO: missing get users recipes
@@ -22,13 +26,27 @@ public class RecipeController {
     @Autowired
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
-    };
+    }
 
     @PostMapping("/add")
-    public ResponseEntity<RecipeModel> addRecipe(@RequestBody RecipeModel recipe) {
-        RecipeModel savedRecipe = recipeService.addRecipe(recipe);
-        return ResponseEntity.ok(savedRecipe);
-    };
+    public ResponseEntity<RecipeModel> addRecipe(@RequestBody CreateRecipeDTO dto) {
+        RecipeModel recipe = new RecipeModel();
+        recipe.setName(dto.getName());
+        recipe.setDescription(dto.getDescription());
+        recipe.setCategory(dto.getCategory());
+        recipe.setDurationInMinutes(dto.getPreparationTimeInMinutes());
+        recipe.setInstructions(dto.getInstructions());
+        recipe.setIngredients(dto.getIngredients().stream().map(ingredientName -> {
+            RecipeModel.Ingredient ingredient = new RecipeModel.Ingredient();
+            ingredient.setName(ingredientName);
+            ingredient.setAmount(0);
+            ingredient.setUnit("");
+            return ingredient;
+        }).toList());
+        recipe.setImageUrl("");
+        recipe.setRating(0);
+        return ResponseEntity.ok(recipeService.addRecipe(recipe));
+    }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteRecipe(@PathVariable String id) {
@@ -38,11 +56,21 @@ public class RecipeController {
         } else {
             return ResponseEntity.notFound().build();
         }
-    };
+    }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<RecipeModel> updateRecipe(@PathVariable String id, @RequestBody RecipeModel updatedRecipe) {
         Optional<RecipeModel> result = recipeService.updateRecipe(id, updatedRecipe);
         return result.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    };
-};
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<?> getUserRecipes(@RequestParam String userId) {
+        return ResponseEntity.ok(recipeService.getRecipesByUserId(userId));
+    } // Added endpoint to get recipes for a specific user
+
+    @GetMapping("/external")
+    public ResponseEntity<List<ExternalRecipeDTO>> getExternalRecipes() {
+        return ResponseEntity.ok(recipeService.fetchExternalRecipes());
+    } // Fetches recipes from theMealDB and maps them to simplified DTOs
+}

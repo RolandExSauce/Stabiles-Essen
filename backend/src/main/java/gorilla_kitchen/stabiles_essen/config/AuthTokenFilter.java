@@ -30,10 +30,6 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
-        //System.out.println("🌐 0. RequestLoggingFilter: incoming "
-        // + request.getMethod() + " " + request.getRequestURI());
-        //filterChain.doFilter(request, response);
-
         try {
             String jwt = parseJwt(request);
             if (jwt != null && jwtUtils.validateJwtToken(jwt)) {

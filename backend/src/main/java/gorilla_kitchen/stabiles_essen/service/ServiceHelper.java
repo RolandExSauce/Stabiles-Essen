@@ -1,7 +1,7 @@
 package gorilla_kitchen.stabiles_essen.service;
 import gorilla_kitchen.stabiles_essen.config.JwtUtil;
 import gorilla_kitchen.stabiles_essen.dto.AuthDTOs;
-import gorilla_kitchen.stabiles_essen.model.UserModel;
+import gorilla_kitchen.stabiles_essen.model.UserDoc;
 import gorilla_kitchen.stabiles_essen.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,9 +19,9 @@ public class ServiceHelper {
     private final PasswordEncoder passwordEncoder;
 
     //create the user
-    public UserModel createUser(String username, String email, String rawPassword) {
+    public UserDoc createUser(String username, String email, String rawPassword) {
         validateUniqueUser(username, email);
-        UserModel user = new UserModel(username, email);
+        UserDoc user = new UserDoc(username, email);
         user.encodePassword(rawPassword, passwordEncoder);
         return userRepository.save(user);
     };
@@ -37,7 +37,7 @@ public class ServiceHelper {
     };
 
     //construct response using dto
-    public AuthDTOs.AuthResponse buildAuthResponse(UserModel user) {
+    public AuthDTOs.AuthResponse buildAuthResponse(UserDoc user) {
         //send user auth response back with token
         return new AuthDTOs.AuthResponse(
                 jwtUtils.generateToken(user.getUsername()),

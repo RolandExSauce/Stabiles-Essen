@@ -22,9 +22,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
 
     private final JwtUtil jwtUtils;
-
     private final CustomUserDetailsService userDetailsService;
-
     private final AuthEntryPointJwt unauthorizedHandler;
 
     public SecurityConfig(
@@ -60,7 +58,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                //For now let's disable CORS, but we can config later
                 .csrf(AbstractHttpConfigurer::disable) // Disable CSRF
                 //.cors(AbstractHttpConfigurer::disable) // Disable CORS
                 .cors(withDefaults())
@@ -73,12 +70,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(
-                                        "/silverbackkitchen/auth/**",
-                                        "/silverbackkitchen/test/all",
+                                        "/silverback/auth/**",
+                                        "/silverback/test/all",
                                         "/swagger-ui/**",
                                         "/v3/api-docs/**"
                                 ).permitAll()
-                                .anyRequest().authenticated()
+                                .requestMatchers("/silverback/**")
+                                .authenticated()
+                                .anyRequest().denyAll()
                 )
                 //disable basic auth and form login
                         .formLogin(AbstractHttpConfigurer::disable)
@@ -88,5 +87,4 @@ public class SecurityConfig {
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     };
-
-}
+};

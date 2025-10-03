@@ -14,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 //auth controller for login and register
 @RestController
-@RequestMapping("/silverbackkitchen/auth")
+@RequestMapping("/silverback/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -23,10 +23,6 @@ public class AuthController {
     @Operation(summary = "Sign in", description = "Authenticate user and return a JWT token")
     @PostMapping("/signin")
     public AuthDTOs.AuthResponse authenticateUser(@RequestBody AuthDTOs.LoginRequest loginRequest) {
-
-        //To get a better understanding how spring security works, console.log the data from below
-        //they should be printed after the filter
-        System.out.println("Login request: " + loginRequest);
         try {
             return authService.authenticateUser(loginRequest);
         } catch (AuthenticationException e) {
@@ -37,11 +33,10 @@ public class AuthController {
     @Operation(summary = "Sign up", description = "Register a new user")
     @PostMapping("/signup")
     public AuthDTOs.AuthResponse registerUser(@RequestBody AuthDTOs.RegisterRequest registerRequest) {
-        System.out.println("Register request: " + registerRequest);
         try {
             return authService.registerUser(registerRequest);
         } catch (DuplicateKeyException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username or email already taken");
         }
     };
-}
+};

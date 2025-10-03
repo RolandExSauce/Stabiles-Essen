@@ -1,5 +1,5 @@
 package gorilla_kitchen.stabiles_essen.service;
-import gorilla_kitchen.stabiles_essen.model.UserModel;
+import gorilla_kitchen.stabiles_essen.model.UserDoc;
 import gorilla_kitchen.stabiles_essen.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,7 +17,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        UserModel user = userRepository.findByUsername(username)
+        UserDoc user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         return new User(
                 user.getUsername(),

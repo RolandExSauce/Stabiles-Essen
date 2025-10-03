@@ -1,76 +1,69 @@
 package gorilla_kitchen.stabiles_essen.controller;
-
-import gorilla_kitchen.stabiles_essen.model.RecipeModel;
+import gorilla_kitchen.stabiles_essen.dto.KitchenDTOs;
+import gorilla_kitchen.stabiles_essen.dto.MealDBRecipeDTO;
+import gorilla_kitchen.stabiles_essen.model.RecipeDoc;
+import gorilla_kitchen.stabiles_essen.service.AuthService;
 import gorilla_kitchen.stabiles_essen.service.RecipeService;
-import gorilla_kitchen.stabiles_essen.dto.ExternalRecipeDTO;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
-
-//TODO: missing get users recipes
-//fetch some recipes from backend using MealDB API just to fill frontend section
-//use REST Template and just fetch from this endpoint: www.themealdb.com/api/json/v1/1/search.php?f=a
-//TODO: use the Kitchen DTOs instead of the models
-//TODO: Test with Postman (Token from login has to be in Authorization Header)
+import java.security.Principal;
+import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/recipes")
+@RequestMapping("/silverback/recipes")
 public class RecipeController {
 
     private final RecipeService recipeService;
+    private final AuthService authService;
 
-    @Autowired
-    public RecipeController(RecipeService recipeService) {
+    public RecipeController(RecipeService recipeService, AuthService authService) {
         this.recipeService = recipeService;
+        this.authService = authService;
     }
 
     @PostMapping("/add")
-    public ResponseEntity<RecipeModel> addRecipe(@RequestBody CreateRecipeDTO dto) {
-        RecipeModel recipe = new RecipeModel();
-        recipe.setName(dto.getName());
-        recipe.setDescription(dto.getDescription());
-        recipe.setCategory(dto.getCategory());
-        recipe.setDurationInMinutes(dto.getPreparationTimeInMinutes());
-        recipe.setInstructions(dto.getInstructions());
-        recipe.setIngredients(dto.getIngredients().stream().map(ingredientName -> {
-            RecipeModel.Ingredient ingredient = new RecipeModel.Ingredient();
-            ingredient.setName(ingredientName);
-            ingredient.setAmount(0);
-            ingredient.setUnit("");
-            return ingredient;
-        }).toList());
-        recipe.setImageUrl("");
-        recipe.setRating(0);
-        return ResponseEntity.ok(recipeService.addRecipe(recipe));
+    public ResponseEntity<RecipeDoc> addRecipe(
+            @RequestBody KitchenDTOs.CreateRecipeDTO dto,
+            Principal principal
+    ) {
+        String userId = authService.getUserIdFromPrincipal(principal);
+        dto.setUserId(userId);
+        return ResponseEntity.ok(recipeService.createAndSaveRecipe(dto));
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteRecipe(@PathVariable String id) {
-        boolean deleted = recipeService.deleteRecipe(id);
-        if (deleted) {
-            return ResponseEntity.ok("Recipe deleted successfully.");
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<String> deleteRecipe(
+            @PathVariable String id,
+            Principal principal
+    ) {
+        String userId = authService.getUserIdFromPrincipal(principal);
+        boolean deleted = recipeService.deleteRecipe(id, userId);
+        return deleted ?
+                ResponseEntity.ok("Recipe deleted successfully") :
+                ResponseEntity.notFound().build();
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<RecipeModel> updateRecipe(@PathVariable String id, @RequestBody RecipeModel updatedRecipe) {
-        Optional<RecipeModel> result = recipeService.updateRecipe(id, updatedRecipe);
-        return result.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<RecipeDoc> updateRecipe(
+            @PathVariable String id,
+            @RequestBody RecipeDoc updatedRecipeDoc,
+            Principal principal
+    ) {
+        String userId = authService.getUserIdFromPrincipal(principal);
+        return recipeService.updateRecipe(id, updatedRecipeDoc, userId)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/user")
-    public ResponseEntity<?> getUserRecipes(@RequestParam String userId) {
+    public ResponseEntity<List<RecipeDoc>> getUserRecipes(Principal principal) {
+        String userId = authService.getUserIdFromPrincipal(principal);
         return ResponseEntity.ok(recipeService.getRecipesByUserId(userId));
-    } // Added endpoint to get recipes for a specific user
+    }
 
     @GetMapping("/external")
-    public ResponseEntity<List<ExternalRecipeDTO>> getExternalRecipes() {
+    public ResponseEntity<List<MealDBRecipeDTO>> getExternalRecipes() {
         return ResponseEntity.ok(recipeService.fetchExternalRecipes());
-    } // Fetches recipes from theMealDB and maps them to simplified DTOs
+    }
 }

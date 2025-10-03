@@ -1,45 +1,50 @@
 package gorilla_kitchen.stabiles_essen.controller;
-
-import gorilla_kitchen.stabiles_essen.model.PantryItemModel;
+import gorilla_kitchen.stabiles_essen.dto.KitchenDTOs.CreatePantryItemDTO;
+import gorilla_kitchen.stabiles_essen.model.PantryItemDoc;
+import gorilla_kitchen.stabiles_essen.service.AuthService;
 import gorilla_kitchen.stabiles_essen.service.PantryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.security.Principal;
+import java.util.List;
 
-
-/*
-TODO: missing get all pantry items +
-TODO: Test with Postman (Token from login has to be in Authorization Header)
-*/
 @RestController
-@RequestMapping("/api/pantry")
+@RequestMapping("/silverback/pantry")
 public class PantryController {
 
     private final PantryService pantryService;
+    private final AuthService authService;
 
-    @Autowired
-    public PantryController(PantryService pantryService) {
+    public PantryController(PantryService pantryService, AuthService authService) {
         this.pantryService = pantryService;
+        this.authService = authService;
     }
 
     @PostMapping("/add")
-    public ResponseEntity<PantryItemModel> addPantryItem(@RequestBody PantryItemModel item) {
-        PantryItemModel savedItem = pantryService.addPantryItem(item);
-        return ResponseEntity.ok(savedItem);
+    public ResponseEntity<PantryItemDoc> addPantryItem(
+            @RequestBody CreatePantryItemDTO itemDTO,
+            Principal principal
+    ) {
+        String userId = authService.getUserIdFromPrincipal(principal);
+        itemDTO.setUserId(userId);
+        return ResponseEntity.ok(pantryService.createAndSavePantryItem(itemDTO));
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deletePantryItem(@PathVariable String id) {
-        boolean deleted = pantryService.deletePantryItem(id);
-        if (deleted) {
-            return ResponseEntity.ok("Pantry item deleted successfully.");
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<String> deletePantryItem(
+            @PathVariable String id,
+            Principal principal
+    ) {
+        String userId = authService.getUserIdFromPrincipal(principal);
+        boolean deleted = pantryService.deletePantryItem(id, userId);
+        return deleted ?
+                ResponseEntity.ok("Pantry item deleted successfully") :
+                ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<?> getAllPantryItems() {
-        return ResponseEntity.ok(pantryService.getAllPantryItems());
-    } // Added endpoint to retrieve all pantry items
+    @GetMapping("/items/user")
+    public ResponseEntity<List<PantryItemDoc>> getAllPantryItems(Principal principal) {
+        String userId = authService.getUserIdFromPrincipal(principal);
+        return ResponseEntity.ok(pantryService.getPantryItemsByUserId(userId));
+    }
 }

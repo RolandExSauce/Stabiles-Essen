@@ -1,5 +1,5 @@
 // Base URLs (you can adjust this if needed for dev/prod environments)
-export const BASE_API_URL = "http://localhost:8080/silverbackkitchen"; 
+export const BASE_API_URL = "http://localhost:8080/silverback"; 
 
 // Auth Endpoints
 export const AUTH_ENDPOINTS = {
@@ -10,20 +10,20 @@ export const AUTH_ENDPOINTS = {
 
 // Recipe Endpoints
 export const RECIPE_ENDPOINTS = {
-  ADD: `${BASE_API_URL}/api/recipes/add`,
-  DELETE: (id: string) => `${BASE_API_URL}/api/recipes/delete/${id}`,
-  UPDATE: (id: string) => `${BASE_API_URL}/api/recipes/update/${id}`,
-
+  ADD: `${BASE_API_URL}/recipes/add`,
+  DELETE: (id: string) => `${BASE_API_URL}/recipes/delete/${id}`,
+  UPDATE: (id: string) => `${BASE_API_URL}/recipes/update/${id}`,
   // Placeholder for future:
-  GET_USER_RECIPES: `${BASE_API_URL}/api/recipes/user`,
-  EXTERNAL_API: "https://www.themealdb.com/api/json/v1/1/search.php?f=a"
+  GET_USER_RECIPES: `${BASE_API_URL}/silverback/recipes/user`,
+  EXTERNAL_API: "/silverback/recipes/external"
 };
 
 // Pantry Endpoints
 export const PANTRY_ENDPOINTS = {
-  ADD: `${BASE_API_URL}/api/pantry/add`,
-  DELETE: (id: string) => `${BASE_API_URL}/api/pantry/delete/${id}`,
-  // Placeholder for future:
+  ADD: `${BASE_API_URL}/pantry/add`,
+  DELETE: (id: string) => `${BASE_API_URL}/pantry/delete/${id}`,
+
+  GET_USER_PANTRY_ITEMS: `${BASE_API_URL}/items/user`,
   GET_ALL: `${BASE_API_URL}/api/pantry/all`
 };
 

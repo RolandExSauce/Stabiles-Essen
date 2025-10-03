@@ -1,17 +1,10 @@
 package gorilla_kitchen.stabiles_essen.repo;
-import gorilla_kitchen.stabiles_essen.model.PantryItemModel;
+import gorilla_kitchen.stabiles_essen.model.PantryItemDoc;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
+import java.util.List;
+import java.util.Optional;
 
-/**
- * Repository interface for managing PantryItemModel documents in MongoDB.
- *
- * Note: Adding or removing pantry items from a user's pantry list should be handled
- * in the UserRepository or PantryService, since the relationship is stored in UserModel.
- */
-@Repository
-public interface PantryRepository extends MongoRepository<PantryItemModel, String> {
-
-    // Basic CRUD methods like save(), findById(), deleteById() are inherited from MongoRepository.
-
-};
+public interface PantryRepository extends MongoRepository<PantryItemDoc, String> {
+    List<PantryItemDoc> findByUserId(String userId);
+    Optional<PantryItemDoc> findByIdAndUserId(String itemId, String userId);
+}

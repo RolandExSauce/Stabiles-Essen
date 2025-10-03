@@ -1,27 +1,30 @@
 package gorilla_kitchen.stabiles_essen.model;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import gorilla_kitchen.stabiles_essen.utils.ItemCategory;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
+import lombok.*;
+
 
 //Define a recipe document, this Recipe Model refers To OUR RECIPES, so the
 //private ones, the others will come via API requests from theMealDB
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RecipeModel {
+@Document(collection = "recipes")
+public class RecipeDoc {
     @Id
     private String id;
     private String name;
-    private int durationInMinutes;
-    private int rating;
+    private String description;
+    private int cookingTime;
+    private int calories;
     private List<Ingredient> ingredients;
     private String instructions;
-    private String category;
+    private ItemCategory itemCategory;
+
     private String imageUrl;
-    private String userId; // ID of the user who created this recipe
+    private String userId; // id of the user who created this recipe
 
     @Data
     @AllArgsConstructor
@@ -30,5 +33,5 @@ public class RecipeModel {
         private String name;
         private double amount;
         private String unit;
-    }
-}
+    };
+};
